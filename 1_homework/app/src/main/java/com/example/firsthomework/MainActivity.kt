@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        arrowLeftOrRightClicks()
+        handleClicks()
     }
 
-    private fun arrowLeftOrRightClicks() {
+    private fun handleClicks() {
         var currentIndex = 0
 
         val button = findViewById<Button>(R.id.addToCart)
@@ -135,14 +135,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeCharacteristicsOfCar() {
-        val characteristics = CarCharacteristics()
-        characteristics.carBodyType
-        characteristics.carYearsOfIssue
-        characteristics.carPower
-        characteristics.carEngineVolume
-        characteristics.carAcceleration
-
-    }
 }
 
