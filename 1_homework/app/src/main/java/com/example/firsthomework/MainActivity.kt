@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         val imageArrowLeft = findViewById<ImageButton>(R.id.arrowLeft)
         val imageArrowRight = findViewById<ImageButton>(R.id.arrowRight)
 
-
         imageArrowLeft.setOnClickListener {
             if (currentIndex < carImagesArray.size - 1 && currentIndex < carArrayName.size - 1 && currentIndex < carPriceArray.size - 1
                 && currentIndex < carBodyTypeArray.size - 1 && currentIndex < carYearArray.size - 1 && currentIndex < carPowerArray.size - 1
@@ -125,6 +124,5 @@ class MainActivity : AppCompatActivity() {
         characteristics.carAcceleration
 
     }
-
 }
 
