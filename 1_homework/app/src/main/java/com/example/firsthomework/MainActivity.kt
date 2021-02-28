@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         clicks()
     }
 
-
     private fun clicks() {
         var currentIndex = 0
 
