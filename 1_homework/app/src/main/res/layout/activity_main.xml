@@ -20,7 +20,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/chooseYourCar"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/headingColor"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/porsche_911"
         android:textAlignment="center"
-        android:textColor="@color/navy"
+        android:textColor="@color/carNameColor"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="40dp"
             android:text="@string/price"
-            android:textColor="@color/black"
+            android:textColor="@color/headingColor"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="100dp"
             android:text="@string/characteristics"
-            android:textColor="@color/black"
+            android:textColor="@color/headingColor"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -108,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="24dp"
             android:text="@string/porsche_911_price_value"
-            android:textColor="@color/black"
+            android:textColor="@color/priceColor"
             android:textSize="18sp"
             android:textAlignment="center"
             android:textStyle="bold" />
@@ -117,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/dollars"
-            android:textColor="@color/black"
+            android:textColor="@color/priceColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/body_type"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
                 <TextView
@@ -145,7 +145,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:text="@string/sedan"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -159,7 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/years_of_issue"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
                 <TextView
@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:text="@string/porsche_911_year"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/power"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
                 <TextView
@@ -191,7 +191,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:text="@string/porsche_911_power_value"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -204,7 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/engine_volume"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
                 <TextView
@@ -213,7 +213,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:text="@string/porsche_911_volume"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -226,7 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/acceleration"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
 
                 <TextView
@@ -235,7 +235,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:text="@string/porsche_911_acceleration_value"
-                    android:textColor="@color/black"
+                    android:textColor="@color/typeOfCharacteristicsColor"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -244,6 +244,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/addToCart"
         android:layout_width="370dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"

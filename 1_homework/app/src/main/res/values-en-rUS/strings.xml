@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">firstHomework</string>
+    <string name="carShop">Car Showroom</string>
+    <string name="cart">Cart</string>
+    <string name="arrow_left">Left Arrow</string>
+    <string name="arrow_right">Right Arrow</string>
+    <string name="chooseYourCar">Please select a car</string>
+    <string name="porsche_911">Porsche 911 Carrera</string>
+    <string name="porsche_cayenne">Porsche Cayenne</string>
+    <string name="porsche_taycan">Porsche Taycan</string>
+    <string name="car">Car</string>
+    <string name="price">Price:</string>
+    <string name="characteristics">Short characteristics:</string>
+    <string name="porsche_911_price_value">109290</string>
+    <string name="porsche_cayenne_price_value">75683</string>
+    <string name="porsche_taycan_price_value">88454</string>
+    <string name="dollars">$</string>
+    <string name="body_type">Body type:</string>
+    <string name="years_of_issue">Year of issue:</string>
+    <string name="power">Power,hp:</string>
+    <string name="engine_volume">Engine displacement,cc:</string>
+    <string name="acceleration">Acceleration 100 km/h,s:</string>
+    <string name="jeep">jeep</string>
+    <string name="sedan">sedan</string>
+    <string name="porsche_911_year">2015</string>
+    <string name="porsche_cayenne_year">2017</string>
+    <string name="porsche_taycan_year">2019</string>
+    <string name="porsche_911_volume">2981</string>
+    <string name="porsche_cayenne_volume">2955</string>
+    <string name="porsche_taycan_volume">el./0</string>
+    <string name="porsche_911_power_value">370</string>
+    <string name="porsche_cayenne_power_value">340</string>
+    <string name="porsche_taycan_power_value">326</string>
+    <string name="porsche_911_acceleration_value">4.4</string>
+    <string name="porsche_cayenne_acceleration_value">6.2</string>
+    <string name="porsche_taycan_acceleration_value">5.4</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="order">Your order:</string>
+
+</resources>

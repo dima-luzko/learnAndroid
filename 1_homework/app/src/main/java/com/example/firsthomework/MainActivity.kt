@@ -1,12 +1,16 @@
 package com.example.firsthomework
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.firsthomework.CartActivity as CartActivity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,11 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        clicks()
+        arrowLeftOrRightClicks()
     }
 
-    private fun clicks() {
+    private fun arrowLeftOrRightClicks() {
         var currentIndex = 0
+
+        val button = findViewById<Button>(R.id.addToCart)
+
+        val orderIntent = Intent(this, CartActivity::class.java)
 
         val carBodyTypeArray: Array<Int> = arrayOf(R.string.sedan, R.string.jeep, R.string.sedan)
         val carBodyType = findViewById<TextView>(R.id.body_type)
@@ -113,11 +121,23 @@ class MainActivity : AppCompatActivity() {
                 carAccelerationValue.text = getString(carAccelerationArray[currentIndex])
             }
         }
+
+        button.setOnClickListener {
+            orderIntent.putExtra("carImage",carImagesArray[currentIndex])
+            orderIntent.putExtra("carPrice",carPrice.text.toString())
+            orderIntent.putExtra("carBodyType",carBodyType.text.toString())
+            orderIntent.putExtra("carYear",carYear.text.toString())
+            orderIntent.putExtra("carPower",carPowerValue.text.toString())
+            orderIntent.putExtra("carEngineVolume",carVolume.text.toString())
+            orderIntent.putExtra("carAcceleration",carAccelerationValue.text.toString())
+            orderIntent.putExtra("carName",carName.text.toString())
+            startActivity(orderIntent)
+        }
     }
 
     private fun changeCharacteristicsOfCar() {
         val characteristics = CarCharacteristics()
-        characteristics.carBodyType = getString(R.string.jeep)
+        characteristics.carBodyType
         characteristics.carYearsOfIssue
         characteristics.carPower
         characteristics.carEngineVolume
