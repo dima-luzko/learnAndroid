@@ -250,7 +250,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="@string/add_to_cart"
-
         />
 
 

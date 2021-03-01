@@ -194,5 +194,13 @@
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/sendMail"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/send_mail" />
+
 
 </LinearLayout>
