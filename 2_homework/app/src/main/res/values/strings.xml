@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloApp</string>
+    <string name="app_name">Calculator</string>
     <string name="zero">0</string>
     <string name="clean">C</string>
     <string name="seven">7</string>

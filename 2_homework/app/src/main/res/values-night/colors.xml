@@ -7,11 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="numbers_button">#B0C4DE</color>
-    <color name="standart_function">#DEB887</color>
-    <color name="additional_function">#B0E0E6</color>
-    <color name="background">#FDF5E6</color>
+    <color name="numbers_button">#FF03DAC5</color>
+    <color name="standart_function">#FF7F50</color>
+    <color name="additional_function">#00BFFF</color>
     <color name="clean_button">#FF4500</color>
-    #5F9EA0
-    #B0C4DE
 </resources>
