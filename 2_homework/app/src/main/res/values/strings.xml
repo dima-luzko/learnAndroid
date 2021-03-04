@@ -15,4 +15,5 @@
     <string name="three">3</string>
     <string name="equals">=</string>
     <string name="comma">,</string>
+    <string name="reset">""</string>
 </resources>

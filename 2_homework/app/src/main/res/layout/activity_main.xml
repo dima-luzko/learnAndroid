@@ -10,6 +10,8 @@
     android:id="@+id/view"
     tools:context=".MainActivity">
 
+
+
     <TextView
         android:id="@+id/resultText"
         android:layout_width="match_parent"

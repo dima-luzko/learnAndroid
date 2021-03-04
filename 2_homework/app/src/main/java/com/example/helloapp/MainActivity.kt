@@ -1,7 +1,6 @@
 package com.example.helloapp
 
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +8,10 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var view: LinearLayout
+    private var mathFunction: Int = 0
+    private var number1: Int = 0
+    private var number2: Int = 0
+    private var res: Int = 0
     private lateinit var resultText: TextView
     private lateinit var zeroButton: AppCompatButton
     private lateinit var oneButton: AppCompatButton
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleClicks() {
+        resultText = findViewById(R.id.resultText)
         zeroButton = findViewById(R.id.zeroButton)
         oneButton = findViewById(R.id.oneButton)
         twoButton = findViewById(R.id.twoButton)
@@ -69,9 +71,11 @@ class MainActivity : AppCompatActivity() {
         }
         oneButton.setOnClickListener {
             setText(getString(R.string.one))
+
         }
         twoButton.setOnClickListener {
             setText(getString(R.string.two))
+
         }
         threeButton.setOnClickListener {
             setText(getString(R.string.three))
@@ -98,19 +102,22 @@ class MainActivity : AppCompatActivity() {
             setText(getString(R.string.comma))
         }
         plusButton.setOnClickListener {
-            setText(getString(R.string.plus))
+            number1 = resultText.text.toString().toInt()
+            resultText.text = ""
+            mathFunction = setText(getString(R.string.plus)).toString().toInt()
         }
         minusButton.setOnClickListener {
             setText(getString(R.string.minus))
         }
         multiplyButton.setOnClickListener {
-
+            check(R.id.multiplyButton)
         }
         devideButton.setOnClickListener {
 
         }
         equalsButton.setOnClickListener {
-            setText(getString(R.string.equals))
+            res = number1 + number2
+            setText("$number1$mathFunction$number2")
         }
         squareRootOfYButton.setOnClickListener {
 
@@ -128,36 +135,64 @@ class MainActivity : AppCompatActivity() {
 
         }
         cleanButton.setOnClickListener {
-
+            resultText = findViewById(R.id.resultText)
+            val str = resultText.text.toString()
+            if (str.isNotEmpty()) resultText.text = str.substring(0, str.length - 1)
+        }
+        cleanButton.setOnLongClickListener {
+            resultText = findViewById(R.id.resultText)
+            resultText.text = getString(R.string.zero)
+            true
         }
     }
 
-    private fun check(v: View?) {
+    private fun check(v: Int) {
         resultText = findViewById(R.id.resultText)
-        when (v?.id) {
+        when (v) {
             R.id.plusButton -> {
-                resultText.text = getString(R.string.plus)
+                res = number1 + number2
             }
             R.id.oneButton -> {
-                resultText.text = getString(R.string.one)
+                 number1 = getString(R.string.one).toInt()
+                resultText.text = number1.toString()
             }
             R.id.twoButton -> {
-                resultText.text = getString(R.string.two)
+                number2 = getString(R.string.two).toInt()
+                resultText.text = number2.toString()
+            }
+            R.id.threeButton -> {
+//                number2 = getString(R.string.two).toInt()
+//                resultText.text = number2.toString()
             }
             R.id.equalsButton -> {
-                resultText.text = getString(R.string.equals)
+                resultText.text = res.toString()
+            }
+            R.id.multiplyButton -> {
+                res = number1 * number2
             }
         }
     }
 
     private fun setText(str: String) {
+
         resultText = findViewById(R.id.resultText)
-        resultText.text = str
+        resultText.append(str)
+
     }
 
     override fun onStart() {
         super.onStart()
         handleClicks()
     }
+
+    override fun onStop() {
+        super.onStop()
+        oneButton.setOnClickListener(null)
+        twoButton.setOnClickListener(null)
+        plusButton.setOnClickListener(null)
+        equalsButton.setOnClickListener(null)
+
+    }
+
 
 }
