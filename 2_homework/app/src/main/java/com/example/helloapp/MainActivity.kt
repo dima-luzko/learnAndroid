@@ -1,17 +1,32 @@
 package com.example.helloapp
 
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.button.MaterialButton
+import java.math.RoundingMode
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
+
+    private val PLUS = 1
+    private val MINUS = 2
+    private val MULTIPLY = 3
+    private val DEVIDE = 4
+    private val POWER_TO_2 = 5
+    private val POWER_TO_Y = 6
+    private val SQUARE_ROOT_TO_2 = 7
+    private val SQUARE_ROOT_TO_Y = 8
+    private val FRACTION = 9
+
+    private var dotPressed: Boolean = true
+    private var isFirstPressed: Boolean = true
     private var mathFunction: Int = 0
-    private var number1: Int = 0
-    private var number2: Int = 0
-    private var res: Int = 0
+    private var number1: Double = 0.0
+    private var number2: Double = 0.0
+
     private lateinit var resultText: TextView
     private lateinit var zeroButton: AppCompatButton
     private lateinit var oneButton: AppCompatButton
@@ -23,7 +38,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sevenButton: AppCompatButton
     private lateinit var eightButton: AppCompatButton
     private lateinit var nineButton: AppCompatButton
-    private lateinit var commaButton: AppCompatButton
+    private lateinit var dotButton: AppCompatButton
+
     private lateinit var plusButton: MaterialButton
     private lateinit var minusButton: MaterialButton
     private lateinit var multiplyButton: MaterialButton
@@ -53,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         sevenButton = findViewById(R.id.sevenButton)
         eightButton = findViewById(R.id.eightButton)
         nineButton = findViewById(R.id.nineButton)
-        commaButton = findViewById(R.id.commaButton)
+        dotButton = findViewById(R.id.dotButton)
         plusButton = findViewById(R.id.plusButton)
         minusButton = findViewById(R.id.minusButton)
         multiplyButton = findViewById(R.id.multiplyButton)
@@ -71,11 +87,9 @@ class MainActivity : AppCompatActivity() {
         }
         oneButton.setOnClickListener {
             setText(getString(R.string.one))
-
         }
         twoButton.setOnClickListener {
             setText(getString(R.string.two))
-
         }
         threeButton.setOnClickListener {
             setText(getString(R.string.three))
@@ -98,86 +112,128 @@ class MainActivity : AppCompatActivity() {
         nineButton.setOnClickListener {
             setText(getString(R.string.nine))
         }
-        commaButton.setOnClickListener {
+        dotButton.setOnClickListener {
+            dotPressed = true
             setText(getString(R.string.comma))
         }
+
+
         plusButton.setOnClickListener {
-            number1 = resultText.text.toString().toInt()
-            resultText.text = ""
-            mathFunction = setText(getString(R.string.plus)).toString().toInt()
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = PLUS
+            resultText.text = getString(R.string.reset)
         }
         minusButton.setOnClickListener {
-            setText(getString(R.string.minus))
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = MINUS
+            resultText.text = getString(R.string.reset)
         }
         multiplyButton.setOnClickListener {
-            check(R.id.multiplyButton)
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = MULTIPLY
+            resultText.text = getString(R.string.reset)
         }
         devideButton.setOnClickListener {
-
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = DEVIDE
+            resultText.text = getString(R.string.reset)
         }
         equalsButton.setOnClickListener {
-            res = number1 + number2
-            setText("$number1$mathFunction$number2")
+            if (isFirstPressed) {
+                number2 = resultText.text.toString().toDouble()
+                isFirstPressed = false
+            }
+            checkMathOperation()
         }
         squareRootOfYButton.setOnClickListener {
-
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = SQUARE_ROOT_TO_Y
+            resultText.text = getString(R.string.reset)
         }
         squareRootOf2Button.setOnClickListener {
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            number1 = sqrt(number1)
+            resultText.text = number1.toString()
+           // resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.HALF_EVEN).toDouble().toString()
 
         }
         powerToYButton.setOnClickListener {
-
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            mathFunction = POWER_TO_Y
+            resultText.text = getString(R.string.reset)
         }
         powerTo2Button.setOnClickListener {
-
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            number1 = number1.pow(2)
+            resultText.text = number1.toString()
         }
         fractionButton.setOnClickListener {
-
+            isFirstPressed = true
+            number1 = resultText.text.toString().toDouble()
+            if(number1.toString() != getString(R.string.zero)) {
+                number1 = 1/number1
+                resultText.text = number1.toString()
+            } else {
+                resultText.text = getString(R.string.error)
+            }
         }
+
+
         cleanButton.setOnClickListener {
+            isFirstPressed = true
             resultText = findViewById(R.id.resultText)
             val str = resultText.text.toString()
             if (str.isNotEmpty()) resultText.text = str.substring(0, str.length - 1)
         }
         cleanButton.setOnLongClickListener {
+            isFirstPressed = true
             resultText = findViewById(R.id.resultText)
             resultText.text = getString(R.string.zero)
             true
         }
     }
 
-    private fun check(v: Int) {
-        resultText = findViewById(R.id.resultText)
-        when (v) {
-            R.id.plusButton -> {
-                res = number1 + number2
+    private fun checkMathOperation() {
+        when (mathFunction) {
+            PLUS -> {
+                    number1 += number2
+                    resultText.text = number1.toString()
             }
-            R.id.oneButton -> {
-                 number1 = getString(R.string.one).toInt()
+            MINUS -> {
+                number1 -= number2
                 resultText.text = number1.toString()
             }
-            R.id.twoButton -> {
-                number2 = getString(R.string.two).toInt()
-                resultText.text = number2.toString()
+            MULTIPLY -> {
+                number1 *= number2
+                resultText.text = number1.toString()
             }
-            R.id.threeButton -> {
-//                number2 = getString(R.string.two).toInt()
-//                resultText.text = number2.toString()
+            DEVIDE -> {
+                number1 /= number2
+                resultText.text = number1.toString()
             }
-            R.id.equalsButton -> {
-                resultText.text = res.toString()
+            SQUARE_ROOT_TO_Y -> {
+                number1 = number1.pow(1/number2)
+                resultText.text = number1.toString()
             }
-            R.id.multiplyButton -> {
-                res = number1 * number2
+            POWER_TO_Y -> {
+                number1 = number1.pow(number2)
+                resultText.text = number1.toInt().toString()
             }
         }
     }
 
     private fun setText(str: String) {
-
         resultText = findViewById(R.id.resultText)
-        resultText.append(str)
-
+        if (resultText.text.toString() == getString(R.string.zero)) resultText.text =
+            str else resultText.append(str)
     }
 
     override fun onStart() {
@@ -187,12 +243,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
+        zeroButton.setOnClickListener(null)
         oneButton.setOnClickListener(null)
         twoButton.setOnClickListener(null)
+        threeButton.setOnClickListener(null)
+        fourButton.setOnClickListener(null)
+        fiveButton.setOnClickListener(null)
+        sixButton.setOnClickListener(null)
+        sevenButton.setOnClickListener(null)
+        eightButton.setOnClickListener(null)
+        nineButton.setOnClickListener(null)
+        dotButton.setOnClickListener(null)
         plusButton.setOnClickListener(null)
+        minusButton.setOnClickListener(null)
+        multiplyButton.setOnClickListener(null)
+        devideButton.setOnClickListener(null)
+        cleanButton.setOnClickListener(null)
+        powerTo2Button.setOnClickListener(null)
+        powerToYButton.setOnClickListener(null)
+        squareRootOf2Button.setOnClickListener(null)
+        squareRootOfYButton.setOnClickListener(null)
+        fractionButton.setOnClickListener(null)
         equalsButton.setOnClickListener(null)
-
     }
-
 
 }
