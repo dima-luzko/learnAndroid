@@ -7,8 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="numbers_button">#FF03DAC5</color>
-    <color name="standart_function">#FF7F50</color>
-    <color name="additional_function">#00BFFF</color>
-    <color name="clean_button">#FF4500</color>
+    <color name="numbers_button">#696969</color>
+    <color name="numbers_button_text">#FFFFFFFF</color>
+    <color name="standart_function">#FFA500</color>
+    <color name="standart_function_text">#FFFFFFFF</color>
+    <color name="additional_function">#C0C0C0</color>
+    <color name="additional_function_text">#FF000000</color>
+    <color name="background">#FF000000</color>
+    <color name="resultText">#FFFFFFFF</color>
+
 </resources>

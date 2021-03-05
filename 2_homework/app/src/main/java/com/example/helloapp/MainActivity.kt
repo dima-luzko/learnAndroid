@@ -17,9 +17,8 @@ class MainActivity : AppCompatActivity() {
     private val DEVIDE = 4
     private val POWER_TO_2 = 5
     private val POWER_TO_Y = 6
-    private val SQUARE_ROOT_TO_2 = 7
-    private val SQUARE_ROOT_TO_Y = 8
-    private val FRACTION = 9
+    private val SQUARE_ROOT_OF_2 = 7
+    private val SQUARE_ROOT_OF_Y = 8
 
     private var isFirstPressed: Boolean = true
     private var mathFunction: Int = 0
@@ -150,19 +149,14 @@ class MainActivity : AppCompatActivity() {
         squareRootOfYButton.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
-            mathFunction = SQUARE_ROOT_TO_Y
+            mathFunction = SQUARE_ROOT_OF_Y
             resultText.text = getString(R.string.reset)
         }
         squareRootOf2Button.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
-            if (resultText.text.toString().contains(getString(R.string.dot))) {
                 number1 = sqrt(number1)
                 resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
-            } else {
-                number1 = sqrt(number1)
-                resultText.text = number1.toInt().toString()
-            }
         }
         powerToYButton.setOnClickListener {
             isFirstPressed = true
@@ -173,6 +167,7 @@ class MainActivity : AppCompatActivity() {
         powerTo2Button.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
+            mathFunction = POWER_TO_2
             if (resultText.text.toString().contains(getString(R.string.dot))) {
                 number1 = number1.pow(2)
                 resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
@@ -185,13 +180,8 @@ class MainActivity : AppCompatActivity() {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
             if (resultText.text.toString() != getString(R.string.zero)) {
-                if (resultText.text.toString().contains(getString(R.string.dot))) {
-                    number1 = 1 / number1
-                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
-                } else {
-                    number1 = 1 / number1
-                    resultText.text = number1.toInt().toString()
-                }
+                number1 = 1 / number1
+                resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
             } else {
                 resultText.text = getString(R.string.error)
             }
@@ -254,14 +244,9 @@ class MainActivity : AppCompatActivity() {
                     resultText.text = getString(R.string.error)
                 }
             }
-            SQUARE_ROOT_TO_Y -> {
-                if (resultText.text.toString().contains(getString(R.string.dot))) {
+            SQUARE_ROOT_OF_Y -> {
                     number1 = number1.pow(1 / number2)
                     resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
-                } else {
-                    number1 = number1.pow(1 / number2)
-                    resultText.text = number1.toInt().toString()
-                }
             }
             POWER_TO_Y -> {
                 if (resultText.text.toString().contains(getString(R.string.dot))) {
@@ -272,13 +257,15 @@ class MainActivity : AppCompatActivity() {
                     resultText.text = number1.toInt().toString()
                 }
             }
+            POWER_TO_2 -> {
+                isFirstPressed = false
+            }
         }
     }
 
     private fun setText(str: String) {
         resultText = findViewById(R.id.resultText)
-        if (resultText.text.toString() == getString(R.string.zero)) resultText.text =
-                str else resultText.append(str)
+        if (resultText.text.toString() == getString(R.string.zero)) resultText.text = str else resultText.append(str)
     }
 
     override fun onStart() {
