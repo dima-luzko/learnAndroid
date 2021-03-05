@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private val SQUARE_ROOT_TO_Y = 8
     private val FRACTION = 9
 
-    private var dotPressed: Boolean = true
     private var isFirstPressed: Boolean = true
     private var mathFunction: Int = 0
     private var number1: Double = 0.0
@@ -113,8 +112,7 @@ class MainActivity : AppCompatActivity() {
             setText(getString(R.string.nine))
         }
         dotButton.setOnClickListener {
-            dotPressed = true
-            setText(getString(R.string.comma))
+            setText(getString(R.string.dot))
         }
 
 
@@ -158,10 +156,13 @@ class MainActivity : AppCompatActivity() {
         squareRootOf2Button.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
-            number1 = sqrt(number1)
-            resultText.text = number1.toString()
-           // resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.HALF_EVEN).toDouble().toString()
-
+            if (resultText.text.toString().contains(getString(R.string.dot))) {
+                number1 = sqrt(number1)
+                resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+            } else {
+                number1 = sqrt(number1)
+                resultText.text = number1.toInt().toString()
+            }
         }
         powerToYButton.setOnClickListener {
             isFirstPressed = true
@@ -172,15 +173,25 @@ class MainActivity : AppCompatActivity() {
         powerTo2Button.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
-            number1 = number1.pow(2)
-            resultText.text = number1.toString()
+            if (resultText.text.toString().contains(getString(R.string.dot))) {
+                number1 = number1.pow(2)
+                resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+            } else {
+                number1 = number1.pow(2)
+                resultText.text = number1.toInt().toString()
+            }
         }
         fractionButton.setOnClickListener {
             isFirstPressed = true
             number1 = resultText.text.toString().toDouble()
-            if(number1.toString() != getString(R.string.zero)) {
-                number1 = 1/number1
-                resultText.text = number1.toString()
+            if (resultText.text.toString() != getString(R.string.zero)) {
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
+                    number1 = 1 / number1
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 = 1 / number1
+                    resultText.text = number1.toInt().toString()
+                }
             } else {
                 resultText.text = getString(R.string.error)
             }
@@ -204,28 +215,62 @@ class MainActivity : AppCompatActivity() {
     private fun checkMathOperation() {
         when (mathFunction) {
             PLUS -> {
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
                     number1 += number2
-                    resultText.text = number1.toString()
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 += number2
+                    resultText.text = number1.toInt().toString()
+                }
             }
             MINUS -> {
-                number1 -= number2
-                resultText.text = number1.toString()
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
+                    number1 -= number2
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 -= number2
+                    resultText.text = number1.toInt().toString()
+                }
             }
             MULTIPLY -> {
-                number1 *= number2
-                resultText.text = number1.toString()
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
+                    number1 *= number2
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 *= number2
+                    resultText.text = number1.toInt().toString()
+                }
             }
             DEVIDE -> {
-                number1 /= number2
-                resultText.text = number1.toString()
+                if (resultText.text.toString() != getString(R.string.zero)) {
+                    if (resultText.text.toString().contains(getString(R.string.dot))) {
+                        number1 /= number2
+                        resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                    } else {
+                        number1 /= number2
+                        resultText.text = number1.toInt().toString()
+                    }
+                } else {
+                    resultText.text = getString(R.string.error)
+                }
             }
             SQUARE_ROOT_TO_Y -> {
-                number1 = number1.pow(1/number2)
-                resultText.text = number1.toString()
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
+                    number1 = number1.pow(1 / number2)
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 = number1.pow(1 / number2)
+                    resultText.text = number1.toInt().toString()
+                }
             }
             POWER_TO_Y -> {
-                number1 = number1.pow(number2)
-                resultText.text = number1.toInt().toString()
+                if (resultText.text.toString().contains(getString(R.string.dot))) {
+                    number1 = number1.pow(number2)
+                    resultText.text = number1.toBigDecimal().setScale(4, RoundingMode.CEILING).toDouble().toString()
+                } else {
+                    number1 = number1.pow(number2)
+                    resultText.text = number1.toInt().toString()
+                }
             }
         }
     }
@@ -233,7 +278,7 @@ class MainActivity : AppCompatActivity() {
     private fun setText(str: String) {
         resultText = findViewById(R.id.resultText)
         if (resultText.text.toString() == getString(R.string.zero)) resultText.text =
-            str else resultText.append(str)
+                str else resultText.append(str)
     }
 
     override fun onStart() {

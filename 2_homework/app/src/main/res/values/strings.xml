@@ -14,7 +14,7 @@
     <string name="two">2</string>
     <string name="three">3</string>
     <string name="equals">=</string>
-    <string name="comma">.</string>
+    <string name="dot">.</string>
     <string name="reset">""</string>
     <string name="error">Ошибка</string>
 </resources>
