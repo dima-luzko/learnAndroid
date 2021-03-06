@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="head_text_in_hello_fragment">Готов ли ты бросить себе вызов</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="question_1">Тадж-Махал находится в Израиле?</string>
+    <string name="question_2">Сохранилось ли третье чудо света (статуя Зевса) до наших дней?</string>
+    <string name="question_3">Был ли Аристотель учителем Александра Македонского?</string>
+    <string name="question_4">Гигантский тунец являетса самой крупной рыбой?</string>
+    <string name="question_5">В Сингапуре штрафуют на 500 сингапурских долларов за брошеный на улице окурок, правда ли это? </string>
+    <string name="question_6">Крупнейший коралловый риф находится в Австралии?</string>
+    <string name="question_7">Самая высокая точка в африке называется Эверест?</string>
+    <string name="question_8">Первый атомный ледокол был построен в СССР?</string>
+    <string name="question_9">Правда ли, что самка богомола убивает партнера после спаривания?</string>
+    <string name="question_10">Правда ли, что рыба-клоун может менять свой пол на противоположный?</string>
+    <string name="image">Картинка</string>
+
+</resources>
