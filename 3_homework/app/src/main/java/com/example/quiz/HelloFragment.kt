@@ -19,10 +19,10 @@ class HelloFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        view?.findViewById<View>(R.id.noButton)?.setOnClickListener {
+        view?.findViewById<View>(R.id.noButtonHelloFragment)?.setOnClickListener {
             exitProcess(0)
         }
-        view?.findViewById<View>(R.id.yesButton)?.setOnClickListener {
+        view?.findViewById<View>(R.id.yesButtonHelloFragment)?.setOnClickListener {
             (requireActivity() as FragmentInterface).startQuestions()
         }
     }

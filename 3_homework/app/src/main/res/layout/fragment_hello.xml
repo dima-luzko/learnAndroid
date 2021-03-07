@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_image"
     android:orientation="vertical"
     tools:context=".HelloFragment">
@@ -25,26 +25,25 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/yesButton"
+            android:id="@+id/yesButtonHelloFragment"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:backgroundTint="@color/hello_fragment_button_color"
             android:text="@string/yes"
             android:textColor="@color/white"
-            app:cornerRadius="10dp"
-            android:textSize="25sp" />
-
+            android:textSize="25sp"
+            app:cornerRadius="10dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/noButton"
+            android:id="@+id/noButtonHelloFragment"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_marginStart="120dp"
             android:backgroundTint="@color/hello_fragment_button_color"
             android:text="@string/no"
-            app:cornerRadius="10dp"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            app:cornerRadius="10dp" />
 
     </LinearLayout>
 
