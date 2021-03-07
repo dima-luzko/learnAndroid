@@ -26,10 +26,6 @@ class HelloFragment : Fragment() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-    }
-
     companion object {
         @JvmStatic
         fun newInstance() = HelloFragment()

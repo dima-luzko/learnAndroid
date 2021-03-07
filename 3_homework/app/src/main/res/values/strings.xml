@@ -4,5 +4,5 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="image">Картинка</string>
-
+    <string name="getResults">Получить результаты</string>
 </resources>

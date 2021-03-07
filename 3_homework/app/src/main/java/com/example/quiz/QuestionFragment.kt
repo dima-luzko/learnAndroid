@@ -14,6 +14,8 @@ private const val POSITION = "POSITION"
 class QuestionFragment : Fragment() {
 
     private var position: Int = 0
+    private lateinit var noButton: MaterialButton
+    private lateinit var yesButton: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class QuestionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(resources.obtainTypedArray(R.array.images)) {
             view.findViewById<ImageView>(R.id.imageQuestionFragment)
-                .setImageResource(this.getResourceId(position,0))
+                .setImageResource(this.getResourceId(position, 0))
             recycle()
         }
         val textArray = resources.getStringArray(R.array.questions)
@@ -40,12 +42,25 @@ class QuestionFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        view?.findViewById<MaterialButton>(R.id.yesButtonQuestionFragment)?.setOnClickListener {
+        noButton = view!!.findViewById(R.id.noButtonQuestionFragment)
+        yesButton = view!!.findViewById(R.id.yesButtonQuestionFragment)
+
+        yesButton.setOnClickListener {
             (requireActivity() as FragmentInterface).answerQuestion(true)
         }
-        view?.findViewById<MaterialButton>(R.id.noButtonQuestionFragment)?.setOnClickListener {
-            (requireActivity() as FragmentInterface).answerQuestion(false)
+        noButton.setOnClickListener {
+            (requireActivity() as FragmentInterface).answerQuestion(true)
         }
+
+        if (position==10){
+            noButton.visibility = View.INVISIBLE
+            yesButton.text = getString(R.string.getResults)
+            yesButton.textSize = 15F
+            yesButton.setOnClickListener {
+                (requireActivity() as FragmentInterface).finishQuestions()
+            }
+        }
+
     }
 
     companion object {
