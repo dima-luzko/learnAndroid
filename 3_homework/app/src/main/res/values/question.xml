@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="questions">
+        <item>Тадж-Махал находится в Израиле?</item>
+        <item>Сохранилось ли третье чудо света (статуя Зевса) до наших дней?</item>
+        <item>Был ли Аристотель учителем Александра Македонского?</item>
+        <item>Гигантский тунец являетса самой крупной рыбой?</item>
+        <item>В Сингапуре штрафуют на 500 сингапурских долларов за брошеный на улице окурок, правда ли это? </item>
+        <item>Крупнейший коралловый риф находится в Австралии?</item>
+        <item>Самая высокая точка в африке называется Эверест?</item>
+        <item>Первый атомный ледокол был построен в СССР?</item>
+        <item>Правда ли, что самка богомола убивает партнера после спаривания?</item>
+        <item>Правда ли, что рыба-клоун может менять свой пол на противоположный?</item>
+    </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/image_for_question_1</item>
+        <item>@drawable/image_for_question_2</item>
+        <item>@drawable/image_for_question_3</item>
+        <item>@drawable/image_for_question_4</item>
+        <item>@drawable/image_for_question_5</item>
+        <item>@drawable/image_for_question_6</item>
+        <item>@drawable/image_for_question_7</item>
+        <item>@drawable/image_for_question_8</item>
+        <item>@drawable/image_for_question_9</item>
+        <item>@drawable/image_for_question_10</item>
+    </integer-array>
+
+</resources>

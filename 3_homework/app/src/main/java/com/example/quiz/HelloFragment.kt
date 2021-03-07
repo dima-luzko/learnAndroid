@@ -1,6 +1,5 @@
 package com.example.quiz
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,7 +28,6 @@ class HelloFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-
     }
 
     companion object {
