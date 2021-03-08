@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 interface FragmentInterface {
     fun startQuestions()
     fun finishQuestions()
-    fun answerQuestion(result: Boolean)
+    fun answerQuestion(result: Int)
 }
 
 class MainActivity : AppCompatActivity(), FragmentInterface {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), FragmentInterface {
         replaceFragment(ResultFragment())
     }
 
-    override fun answerQuestion(result: Boolean) {
+    override fun answerQuestion(result: Int) {
         replaceFragment(QuestionFragment.newInstance( ++currentQuestionPosition))
     }
 

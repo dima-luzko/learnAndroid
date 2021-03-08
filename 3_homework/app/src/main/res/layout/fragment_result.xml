@@ -1,15 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="5dp"
     tools:context=".ResultFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textResultsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/head_text_in_hello_fragment"
-        />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:textAlignment="center"
+        android:textColor="@color/text_for_results_fragment"
+        android:textSize="25sp" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/textResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/your_results"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/numberOfPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="45sp" />
+
+    <TextView
+        android:id="@+id/notCryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/not_cry"
+        android:textAlignment="center"
+        android:textColor="@color/text_for_results_fragment"
+        android:textSize="25sp"
+        android:visibility="invisible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tryAgainButton"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/question_fragment_button_color"
+        android:text="@string/try_again"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:cornerRadius="10dp" />
+
+
+</LinearLayout>

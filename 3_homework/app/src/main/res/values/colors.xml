@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bar">#012201</color>
+    <color name="green">#008000</color>
+    <color name="text_for_results_fragment">#ffc904</color>
     <color name="hello_fragment_button_color">#8B4513</color>
     <color name="question_fragment_button_color">#333333</color>
 </resources>

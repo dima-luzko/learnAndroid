@@ -4,5 +4,11 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="image">Картинка</string>
-    <string name="getResults">Получить результаты</string>
+    <string name="get_results">Получить результаты</string>
+    <string name="congratulation">Поздравляем с прохождением викторины!\nСамое время узнать ваши результаты %s</string>
+    <string name="your_results">Ваше количество баллов:</string>
+    <string name="try_again">Попробовать снова</string>
+    <string name="successfully_quiz">Вы успешно прошли викторину!</string>
+    <string name="bad_successfully_quiz">К сожалению, вы не справились!</string>
+    <string name="not_cry">Не расстраивайтесь!\nИ попробуйте снова</string>
 </resources>

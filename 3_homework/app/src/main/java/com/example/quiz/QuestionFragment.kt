@@ -16,6 +16,7 @@ class QuestionFragment : Fragment() {
     private var position: Int = 0
     private lateinit var noButton: MaterialButton
     private lateinit var yesButton: MaterialButton
+    private lateinit var congratulations: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,27 +41,32 @@ class QuestionFragment : Fragment() {
         view.findViewById<TextView>(R.id.textQuestionFragment).text = textArray.getOrNull(position)
     }
 
+    private fun getEmojiByUnicode(unicode: Int): String {
+        return String(Character.toChars(unicode))
+    }
+
     override fun onStart() {
         super.onStart()
+        congratulations = view!!.findViewById(R.id.textQuestionFragment)
         noButton = view!!.findViewById(R.id.noButtonQuestionFragment)
         yesButton = view!!.findViewById(R.id.yesButtonQuestionFragment)
 
         yesButton.setOnClickListener {
-            (requireActivity() as FragmentInterface).answerQuestion(true)
+            (requireActivity() as FragmentInterface).answerQuestion(1)
         }
         noButton.setOnClickListener {
-            (requireActivity() as FragmentInterface).answerQuestion(true)
+            (requireActivity() as FragmentInterface).answerQuestion(0)
         }
 
-        if (position==10){
+        if (position == 10) {
+            congratulations.text = getString(R.string.congratulation,getEmojiByUnicode(0x1F609))
             noButton.visibility = View.INVISIBLE
-            yesButton.text = getString(R.string.getResults)
-            yesButton.textSize = 15F
+            yesButton.text = getString(R.string.get_results)
+            yesButton.textSize = 20F
             yesButton.setOnClickListener {
                 (requireActivity() as FragmentInterface).finishQuestions()
             }
         }
-
     }
 
     companion object {
