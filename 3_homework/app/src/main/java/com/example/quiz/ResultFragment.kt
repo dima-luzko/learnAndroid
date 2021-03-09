@@ -31,7 +31,7 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<TextView>(R.id.numberOfPoints).text = "10"
+        view.findViewById<TextView>(R.id.numberOfPoints).text = resultSum.toString()
     }
 
     override fun onStart() {

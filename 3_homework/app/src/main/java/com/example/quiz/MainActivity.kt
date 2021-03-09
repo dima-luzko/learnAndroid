@@ -8,12 +8,31 @@ import androidx.fragment.app.Fragment
 interface FragmentInterface {
     fun startQuestions()
     fun finishQuestions()
-    fun answerQuestion(result: Int)
+    fun answerQuestion(answer: Answer)
+}
+
+enum class Answer {
+    YES,
+    NO
 }
 
 class MainActivity : AppCompatActivity(), FragmentInterface {
 
     private var currentQuestionPosition = 0
+    private var numberCorrectPoint = 0
+
+    private val answerArray: ArrayList<Answer> = arrayListOf(
+        Answer.NO,
+        Answer.NO,
+        Answer.YES,
+        Answer.NO,
+        Answer.YES,
+        Answer.YES,
+        Answer.NO,
+        Answer.YES,
+        Answer.YES,
+        Answer.YES
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +56,12 @@ class MainActivity : AppCompatActivity(), FragmentInterface {
     }
 
     override fun finishQuestions() {
-        replaceFragment(ResultFragment())
+        replaceFragment(ResultFragment.newInstance(numberCorrectPoint))
     }
 
-    override fun answerQuestion(result: Int) {
-        replaceFragment(QuestionFragment.newInstance( ++currentQuestionPosition))
+    override fun answerQuestion(answer: Answer) {
+        if (answer == answerArray[currentQuestionPosition]) numberCorrectPoint++
+        replaceFragment(QuestionFragment.newInstance(++currentQuestionPosition))
     }
 
 }

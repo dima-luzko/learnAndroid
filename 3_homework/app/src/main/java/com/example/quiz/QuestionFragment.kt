@@ -32,6 +32,7 @@ class QuestionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         with(resources.obtainTypedArray(R.array.images)) {
             view.findViewById<ImageView>(R.id.imageQuestionFragment)
                 .setImageResource(this.getResourceId(position, 0))
@@ -47,19 +48,21 @@ class QuestionFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        val textArray = resources.getStringArray(R.array.questions)
         congratulations = view!!.findViewById(R.id.textQuestionFragment)
         noButton = view!!.findViewById(R.id.noButtonQuestionFragment)
         yesButton = view!!.findViewById(R.id.yesButtonQuestionFragment)
 
         yesButton.setOnClickListener {
-            (requireActivity() as FragmentInterface).answerQuestion(1)
+            (requireActivity() as FragmentInterface).answerQuestion(Answer.YES)
         }
         noButton.setOnClickListener {
-            (requireActivity() as FragmentInterface).answerQuestion(0)
+            (requireActivity() as FragmentInterface).answerQuestion(Answer.NO)
         }
 
-        if (position == 10) {
-            congratulations.text = getString(R.string.congratulation,getEmojiByUnicode(0x1F609))
+
+        if (position == textArray.size) {
+            congratulations.text = getString(R.string.congratulation, getEmojiByUnicode(0x1F609))
             noButton.visibility = View.INVISIBLE
             yesButton.text = getString(R.string.get_results)
             yesButton.textSize = 20F
