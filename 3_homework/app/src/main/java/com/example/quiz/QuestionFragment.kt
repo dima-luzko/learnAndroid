@@ -27,12 +27,11 @@ class QuestionFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? = inflater.inflate(R.layout.fragment_question, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(resources.obtainTypedArray(R.array.images)) {
             view.findViewById<ImageView>(R.id.imageQuestionFragment)
                 .setImageResource(this.getResourceId(position, 0))
@@ -59,7 +58,6 @@ class QuestionFragment : Fragment() {
         noButton.setOnClickListener {
             (requireActivity() as FragmentInterface).answerQuestion(Answer.NO)
         }
-
 
         if (position == textArray.size) {
             congratulations.text = getString(R.string.congratulation, getEmojiByUnicode(0x1F609))

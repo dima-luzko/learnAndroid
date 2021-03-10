@@ -10,5 +10,5 @@
     <string name="try_again">Попробовать снова</string>
     <string name="successfully_quiz">Вы успешно прошли викторину!</string>
     <string name="bad_successfully_quiz">К сожалению, вы не справились!</string>
-    <string name="not_cry">Не расстраивайтесь!\nИ попробуйте снова</string>
+    <string name="not_cry">Не расстраивайтесь!\nПодготовтесь получше и попробуйте снова, у вас все получиться!</string>
 </resources>

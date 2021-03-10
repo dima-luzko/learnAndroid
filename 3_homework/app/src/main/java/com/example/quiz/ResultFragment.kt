@@ -13,7 +13,8 @@ private const val RESULT_SUM = "RESULT_SUM"
 class ResultFragment : Fragment() {
 
     private var resultSum: Int = 0
-    private lateinit var tryAgainButton: MaterialButton
+    private lateinit var textResultFragment: TextView
+    private lateinit var notCryText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class ResultFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
@@ -32,11 +33,16 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<TextView>(R.id.numberOfPoints).text = resultSum.toString()
-    }
+        textResultFragment = view.findViewById(R.id.textResultsFragment)
+        notCryText = view.findViewById(R.id.notCryText)
 
-    override fun onStart() {
-        super.onStart()
-        tryAgainButton = view!!.findViewById(R.id.tryAgainButton)
+        if (resultSum in 0..6) {
+            textResultFragment.text = getString(R.string.bad_successfully_quiz)
+            notCryText.visibility = View.VISIBLE
+        } else {
+            textResultFragment.text = getString(R.string.successfully_quiz)
+        }
+
     }
 
     companion object {
