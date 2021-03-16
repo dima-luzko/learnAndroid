@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Colors</string>
+    <string name="colors_list">Colors list</string>
+    <string name="quiz">Quiz</string>
 </resources>

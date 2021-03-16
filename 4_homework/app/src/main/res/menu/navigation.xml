@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/menu_button"
+        android:title="@string/colors_list" />
+
+    <item
+        android:id="@+id/navigation_quiz"
+        android:icon="@drawable/quiz"
+        android:title="@string/quiz" />
+
+</menu>
