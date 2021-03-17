@@ -11,4 +11,10 @@
     <string name="hot_pink">HOT_PINK</string>
     <string name="black">BLACK</string>
     <string name="white">WHITE</string>
+    <string name="grey">GREY</string>
+    <string name="navy">NAVY</string>
+    <string name="brown">BROWN</string>
+    <string name="chocolate">CHOCOLATE</string>
+    <string name="fuchsia">FUCHSIA</string>
+    <string name="lime">LIME</string>
 </resources>

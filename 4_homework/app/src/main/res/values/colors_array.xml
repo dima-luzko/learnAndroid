@@ -10,6 +10,12 @@
         <item>@color/hot_pink</item>
         <item>@color/black</item>
         <item>@color/white</item>
+        <item>@color/grey</item>
+        <item>@color/navy</item>
+        <item>@color/brown</item>
+        <item>@color/chocolate</item>
+        <item>@color/fuchsia</item>
+        <item>@color/lime</item>
     </integer-array>
 
     <string-array name="colors_name">
@@ -22,5 +28,11 @@
         <item>@string/hot_pink</item>
         <item>@string/black</item>
         <item>@string/white</item>
+        <item>@string/grey</item>
+        <item>@string/navy</item>
+        <item>@string/brown</item>
+        <item>@string/chocolate</item>
+        <item>@string/fuchsia</item>
+        <item>@string/lime</item>
     </string-array>
 </resources>
