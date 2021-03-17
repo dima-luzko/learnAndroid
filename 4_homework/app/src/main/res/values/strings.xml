@@ -17,4 +17,7 @@
     <string name="chocolate">CHOCOLATE</string>
     <string name="fuchsia">FUCHSIA</string>
     <string name="lime">LIME</string>
+    <string name="olive">OLIVE</string>
+    <string name="indigo">INDIGO</string>
+    <string name="khaki">KHAKI</string>
 </resources>

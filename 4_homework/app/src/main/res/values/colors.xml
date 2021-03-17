@@ -21,4 +21,7 @@
     <color name="chocolate">#D2691E</color>
     <color name="fuchsia">#FF00FF</color>
     <color name="lime">#00FF00</color>
+    <color name="olive">#808000</color>
+    <color name="indigo">#4B0082</color>
+    <color name="khaki">#F0E68C</color>
 </resources>

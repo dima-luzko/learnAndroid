@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addToRecyclerView() {
         recyclerView = findViewById(R.id.recycler_view)
+
         recyclerView.layoutManager = GridLayoutManager(
             applicationContext,
             3,

@@ -16,6 +16,9 @@
         <item>@color/chocolate</item>
         <item>@color/fuchsia</item>
         <item>@color/lime</item>
+        <item>@color/olive</item>
+        <item>@color/indigo</item>
+        <item>@color/khaki</item>
     </integer-array>
 
     <string-array name="colors_name">
@@ -34,5 +37,8 @@
         <item>@string/chocolate</item>
         <item>@string/fuchsia</item>
         <item>@string/lime</item>
+        <item>@string/olive</item>
+        <item>@string/indigo</item>
+        <item>@string/khaki</item>
     </string-array>
 </resources>
