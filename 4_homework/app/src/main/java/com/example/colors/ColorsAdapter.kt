@@ -1,20 +1,21 @@
 package com.example.colors
 
-import android.content.Context
-import android.graphics.PorterDuff
+
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ColorsAdapter(var context:Context, private val colorsList: ArrayList<Color>) :
+class ColorsAdapter(private val colorsList: List<Color>, val click: (Color) -> Unit) :
     RecyclerView.Adapter<ColorsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var colorsForms: View = view.findViewById<View>(R.id.colors_form)
-        var colorsName: TextView = view.findViewById<TextView>(R.id.colors_name)
+        var colorsForms: ImageView = view.findViewById(R.id.colors_form)
+        var colorsName: TextView = view.findViewById(R.id.colors_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,16 +23,18 @@ class ColorsAdapter(var context:Context, private val colorsList: ArrayList<Color
             .inflate(R.layout.colors_item, parent, false)
         return ViewHolder(view)
     }
-
-    override fun getItemCount(): Int {
-        return colorsList.size
-    }
+    override fun getItemCount() = colorsList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val color: Color = colorsList[position]
-        holder.colorsForms.setBackgroundResource(R.drawable.colors_form)
-        holder.colorsForms.background.setColorFilter(color.colorForm, PorterDuff.Mode.SRC_IN)
-        holder.colorsName.text = color.colorName
+        with(holder) {
+            colorsForms.setBackgroundResource(R.drawable.colors_form)
+            (colorsForms.drawable as? GradientDrawable)?.setColor(color.colorForm)
+            colorsName.text = color.colorName
+            colorsForms.setOnClickListener {
+                click(color)
+            }
+        }
     }
 }
 

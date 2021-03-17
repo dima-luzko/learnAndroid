@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp">
@@ -12,14 +13,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <View
-        android:id="@+id/colors_form"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/colors_form"
-        />
+        <ImageView
+            android:id="@+id/colors_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/colors_form"
+            tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/colors_name"

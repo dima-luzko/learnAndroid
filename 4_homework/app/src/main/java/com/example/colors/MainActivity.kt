@@ -1,17 +1,17 @@
 package com.example.colors
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var colorsList: ArrayList<Color>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,30 +19,57 @@ class MainActivity : AppCompatActivity() {
 
         hideSystemUI()
         addToRecyclerView()
+
     }
 
     private fun addToRecyclerView() {
-        recyclerView = findViewById(R.id.recycler_view)
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        recyclerView.layoutManager = GridLayoutManager(
-            applicationContext,
-            3,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
-        colorsList = colorsList()
-        recyclerView.adapter = ColorsAdapter(applicationContext, colorsList!!)
+        with(recyclerView) {
+            layoutManager = GridLayoutManager(
+                this@MainActivity,
+                3,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = ColorsAdapter(colorsList()){
+                showDialog()
+            }
+        }
+    }
+
+    private fun showDialog() {
+        val colorsName = resources.getStringArray(R.array.colors_name)
+        val colorForm = resources.getIntArray(R.array.colors_form)
+
+        val dialog = Dialog(this@MainActivity)
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.popup_window)
+        val view = dialog.findViewById(R.id.colors_dialog_form) as View
+        val body = dialog.findViewById(R.id.colors_dialog_name) as TextView
+        for (i in colorForm.indices) {
+            view.setBackgroundColor(colorForm[i])
+            body.text = colorsName[i]
+        }
+
+        val button = dialog.findViewById(R.id.messageButton) as Button
+        button.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
 
     }
 
-    private fun colorsList(): ArrayList<Color> {
+    private fun colorsList(): List<Color> {
         val colorForm = resources.getIntArray(R.array.colors_form)
         val colorsName = resources.getStringArray(R.array.colors_name)
-        val itemsColor: ArrayList<Color> = ArrayList()
-        for (i in colorForm.indices) {
-            itemsColor.add(Color(colorForm = colorForm[i], colorName = colorsName[i]))
+
+        return colorForm.mapIndexed { index, colorForm ->
+            Color(
+                colorForm = colorForm,
+                colorName = colorsName[index]
+            )
         }
-        return itemsColor
     }
 
     @Suppress("DEPRECATION")
