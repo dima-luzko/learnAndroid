@@ -30,7 +30,7 @@ class ColorsAdapter(var context:Context, private val colorsList: ArrayList<Color
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val color: Color = colorsList[position]
         holder.colorsForms.setBackgroundResource(R.drawable.colors_form)
-        holder.colorsForms.background.setColorFilter(color.colorForm, PorterDuff.Mode.SRC_OVER)
+        holder.colorsForms.background.setColorFilter(color.colorForm, PorterDuff.Mode.SRC_IN)
         holder.colorsName.text = color.colorName
     }
 }

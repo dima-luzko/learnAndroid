@@ -10,32 +10,39 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    private var position: Int = 0
-    private var recyclerView: RecyclerView? = null
-    private var gridLayoutManager: GridLayoutManager? = null
-    private var colorsList: ArrayList<Color>? = null
-    private var colorsAdapter: ColorsAdapter? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var colorsList: ArrayList<Color>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         hideSystemUI()
+        addToRecyclerView()
+    }
 
+    private fun addToRecyclerView() {
         recyclerView = findViewById(R.id.recycler_view)
-        gridLayoutManager = GridLayoutManager(
+        recyclerView.layoutManager = GridLayoutManager(
             applicationContext,
             3,
             LinearLayoutManager.VERTICAL,
             false
         )
-        recyclerView?.layoutManager = gridLayoutManager
-        colorsList = ArrayList()
         colorsList = colorsList()
-        colorsAdapter = ColorsAdapter(applicationContext, colorsList!!)
-        recyclerView?.adapter = colorsAdapter
+        recyclerView.adapter = ColorsAdapter(applicationContext, colorsList!!)
+
     }
 
+    private fun colorsList(): ArrayList<Color> {
+        val colorForm = resources.getIntArray(R.array.colors_form)
+        val colorsName = resources.getStringArray(R.array.colors_name)
+        val itemsColor: ArrayList<Color> = ArrayList()
+        for (i in colorForm.indices) {
+            itemsColor.add(Color(colorForm = colorForm[i], colorName = colorsName[i]))
+        }
+        return itemsColor
+    }
 
     @Suppress("DEPRECATION")
     private fun hideSystemUI() {
@@ -49,16 +56,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun colorsList(): ArrayList<Color> {
-        val colorForm = resources.getIntArray(R.array.colors_form)
-        val colorsName = resources.getStringArray(R.array.colors_name)
-        val itemsColor: ArrayList<Color> = ArrayList()
-        for (i in colorForm.indices){
-            itemsColor.add(Color(colorForm = colorForm[i], colorName = colorsName[i]))
-        }
-        return itemsColor
-    }
-
 }
 
