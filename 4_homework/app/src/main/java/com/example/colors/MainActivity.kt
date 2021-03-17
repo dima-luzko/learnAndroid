@@ -10,6 +10,7 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    private var position: Int = 0
     private var recyclerView: RecyclerView? = null
     private var gridLayoutManager: GridLayoutManager? = null
     private var colorsList: ArrayList<Color>? = null
@@ -53,8 +54,9 @@ class MainActivity : AppCompatActivity() {
         val colorForm = resources.getIntArray(R.array.colors_form)
         val colorsName = resources.getStringArray(R.array.colors_name)
         val itemsColor: ArrayList<Color> = ArrayList()
-        itemsColor.add(Color(colorForm = colorForm.size, colorName = colorsName.size.toString()))
-
+        for (i in colorForm.indices){
+            itemsColor.add(Color(colorForm = colorForm[i], colorName = colorsName[i]))
+        }
         return itemsColor
     }
 

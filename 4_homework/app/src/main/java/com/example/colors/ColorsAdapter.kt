@@ -1,11 +1,13 @@
 package com.example.colors
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
 
 class ColorsAdapter(var context:Context, private val colorsList: ArrayList<Color>) :
     RecyclerView.Adapter<ColorsAdapter.ViewHolder>() {
@@ -27,7 +29,8 @@ class ColorsAdapter(var context:Context, private val colorsList: ArrayList<Color
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val color: Color = colorsList[position]
-        holder.colorsForms.setBackgroundColor(color.colorForm)
+        holder.colorsForms.setBackgroundResource(R.drawable.colors_form)
+        holder.colorsForms.background.setColorFilter(color.colorForm, PorterDuff.Mode.SRC_OVER)
         holder.colorsName.text = color.colorName
     }
 }
