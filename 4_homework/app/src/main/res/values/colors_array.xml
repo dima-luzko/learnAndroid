@@ -41,4 +41,26 @@
         <item>@string/indigo</item>
         <item>@string/khaki</item>
     </string-array>
+
+    <string-array name="colors_hash_code">
+        <item>#0000FF</item>
+        <item>#FF0000</item>
+        <item>#FFFF00</item>
+        <item>#FFA500</item>
+        <item>#008000</item>
+        <item>#800080</item>
+        <item>#FF69B4</item>
+        <item>#FF000000</item>
+        <item>#FFFFFFFF</item>
+        <item>#808080</item>
+        <item>#000080</item>
+        <item>#A52A2A</item>
+        <item>#D2691E</item>
+        <item>#FF00FF</item>
+        <item>#00FF00</item>
+        <item>#808000</item>
+        <item>#4B0082</item>
+        <item>#F0E68C</item>
+    </string-array>
+
 </resources>

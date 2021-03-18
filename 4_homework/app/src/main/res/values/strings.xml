@@ -20,6 +20,6 @@
     <string name="olive">OLIVE</string>
     <string name="indigo">INDIGO</string>
     <string name="khaki">KHAKI</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="colon">:</string>
+    <string name="see_any_hash_code">Посмотреть код другого цвета</string>
 </resources>
