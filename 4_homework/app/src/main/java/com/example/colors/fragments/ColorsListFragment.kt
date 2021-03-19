@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.colors.adapter.ColorsAdapter
+import com.example.colors.data.Color
 
 class ColorsListFragment : Fragment() {
 
@@ -35,9 +37,14 @@ class ColorsListFragment : Fragment() {
                 androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = com.example.colors.ColorsAdapter(colorsList()) {
+            adapter = ColorsAdapter(colorsList()) {
                 (requireActivity().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
-                    setPrimaryClip(ClipData.newPlainText(getString(R.string.copy_color_hash_code), it.colorHashCode))
+                    setPrimaryClip(
+                        ClipData.newPlainText(
+                            getString(R.string.copy_color_hash_code),
+                            it.colorHashCode
+                        )
+                    )
                 }
                 showDialog(it)
             }
