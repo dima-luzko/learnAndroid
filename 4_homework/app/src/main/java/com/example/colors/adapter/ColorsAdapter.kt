@@ -16,8 +16,8 @@ class ColorsAdapter(private val colorsList: List<Color>, val click: (Color) -> U
     RecyclerView.Adapter<ColorsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var colorsForms: ImageView = view.findViewById(R.id.colors_form)
-        var colorsName: TextView = view.findViewById(R.id.colors_name)
+        val colorsForms: ImageView = view.findViewById(R.id.colors_form)
+        val colorsName: TextView = view.findViewById(R.id.colors_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

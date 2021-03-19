@@ -68,17 +68,16 @@ class ColorsListFragment : Fragment() {
         val colorBackground = dialog?.findViewById<View>(R.id.colors_dialog_form)
         val colorTextName = dialog?.findViewById<TextView>(R.id.colors_dialog_name)
         val colorCode = dialog?.findViewById<TextView>(R.id.colors_dialog_hash_code)
-        val button = dialog?.findViewById<AppCompatButton>(R.id.messageButton)
+        val seeHashCodeButton = dialog?.findViewById<AppCompatButton>(R.id.see_hash_code_button)
 
         colorBackground?.setBackgroundColor(color.colorForm)
         colorTextName?.text = color.colorName
         colorCode?.text = color.colorHashCode
-        button?.setOnClickListener {
+        seeHashCodeButton?.setOnClickListener {
             dialog?.dismiss()
         }
         dialog?.show()
     }
-
 
     private fun colorsList(): List<Color> {
         val colorForm = resources.getIntArray(R.array.colors_form)

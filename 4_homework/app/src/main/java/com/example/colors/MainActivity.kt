@@ -2,18 +2,16 @@ package com.example.colors
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.colors.fragments.ColorsListFragment
+import com.example.colors.fragments.QuizFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-interface FragmentInterface {
-    fun colorList()
-    fun quiz()
-}
-
-class MainActivity : AppCompatActivity(), FragmentInterface {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +19,25 @@ class MainActivity : AppCompatActivity(), FragmentInterface {
         hideSystemUI()
         initFragment()
     }
+
+    override fun onStart() {
+        super.onStart()
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    replaceFragment(ColorsListFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.navigation_quiz -> {
+                    replaceFragment(QuizFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
+    }
+
 
     private fun initFragment() {
         replaceFragment(ColorsListFragment())
@@ -30,14 +47,6 @@ class MainActivity : AppCompatActivity(), FragmentInterface {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
-    }
-
-    override fun colorList() {
-        TODO("Not yet implemented")
-    }
-
-    override fun quiz() {
-        TODO("Not yet implemented")
     }
 
     @Suppress("DEPRECATION")
