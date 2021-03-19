@@ -1,4 +1,4 @@
-package com.example.colors
+package com.example.colors.fragments
 
 import android.app.Dialog
 import android.content.ClipData
@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.colors.R
 import com.example.colors.adapter.ColorsAdapter
 import com.example.colors.data.Color
 

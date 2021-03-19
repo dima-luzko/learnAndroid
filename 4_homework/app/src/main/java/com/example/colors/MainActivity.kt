@@ -1,15 +1,12 @@
 package com.example.colors
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.colors.fragments.ColorsListFragment
 
 interface FragmentInterface {
     fun colorList()

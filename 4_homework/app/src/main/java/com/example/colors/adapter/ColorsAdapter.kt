@@ -1,4 +1,4 @@
-package com.example.colors
+package com.example.colors.adapter
 
 
 import android.graphics.drawable.GradientDrawable
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.colors.R
+import com.example.colors.data.Color
 
 
 class ColorsAdapter(private val colorsList: List<Color>, val click: (Color) -> Unit) :

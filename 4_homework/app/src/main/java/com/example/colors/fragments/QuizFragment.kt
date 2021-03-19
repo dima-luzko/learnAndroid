@@ -1,10 +1,11 @@
-package com.example.colors
+package com.example.colors.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.colors.R
 
 
 class QuizFragment : Fragment() {

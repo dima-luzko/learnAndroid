@@ -1,4 +1,4 @@
-package com.example.colors
+package com.example.colors.data
 
 data class Color (
     val colorForm: Int,
