@@ -15,8 +15,10 @@ import kotlin.random.Random
 
 class QuizFragment : Fragment() {
 
+    var numbersOfPoint: Int = 0
     private lateinit var backgroundColor: ConstraintLayout
     private lateinit var leftButton: TextView
+    private lateinit var scores: TextView
     private lateinit var rightButton: TextView
 
     override fun onCreateView(
@@ -29,56 +31,67 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         backgroundColor = view.findViewById(R.id.quiz)
-        leftButton = view.findViewById(R.id.left_hash_code_button)
         rightButton = view.findViewById(R.id.right_hash_code_button)
+        leftButton = view.findViewById(R.id.left_hash_code_button)
+        scores = view.findViewById(R.id.scores)
 
-        val colorId = backgroundColor.background
-        
-        backgroundColor.setBackgroundColor(generateRandomColor())
-        
-        
+        val (color, hexText) = getRandomColorAndConvertRandomColorToHexString()
 
+        backgroundColor.setBackgroundColor(color)
+
+        when (generateRandomPosition()) {
+            0 -> {
+                leftButton.text = hexText
+                rightButton.text = randomHexCode()
+            }
+            1 -> {
+                rightButton.text = hexText
+                leftButton.text = randomHexCode()
+            }
+        }
 
         leftButton.setOnClickListener {
             backgroundColor.setBackgroundColor(generateRandomColor())
-            leftButton.text = convertRandomIntToHexString()
+            numbersOfPoint += 1
+            scores.text = numbersOfPoint.toString()
         }
         rightButton.setOnClickListener {
-            backgroundColor.setBackgroundColor(generateRandomColor())
-            rightButton.text = convertRandomIntToHexString()
-
+            numbersOfPoint -= 1
+            scores.text = numbersOfPoint.toString()
         }
-//        rightButton.text = convertRandomIntToHexString()
-//        leftButton.text = convertRandomIntToHexString()
-
-    }
-
-    private fun increaseScore(view: View) {
-
-    }
-
-    private fun decreaseScore(view: View) {
-
     }
 
     private fun generateRandomColor(): Int {
         val rnd = Random
-        return Color.argb(
-            255,
+        return Color.rgb(
             rnd.nextInt(256),
             rnd.nextInt(256),
             rnd.nextInt(256)
         )
     }
 
-    private fun convertRandomIntToHexString(): String {
-        val hex = Integer.toHexString(generateRandomColor())
-        return getString(R.string.sharp) + hex.toUpperCase(Locale.ROOT)
+    private fun generateRandomPosition(): Int {
+        val rnd = Random
+        return rnd.nextInt(2)
     }
 
+
+
+    private fun randomHexCode(): String {
+        val hex = Integer.toHexString(generateRandomColor())
+        return correctHexCode(hex)
+    }
+
+    private fun getRandomColorAndConvertRandomColorToHexString(): Pair<Int, String> {
+        val randomColor = generateRandomColor()
+        val hex = Integer.toHexString(randomColor)
+        return Pair(randomColor, correctHexCode(hex))
+    }
+
+    private fun correctHexCode(hexCode: String): String {
+        return getString(R.string.sharp) + hexCode.substring(2).toUpperCase(Locale.getDefault())
+    }
 
     companion object {
         @JvmStatic
