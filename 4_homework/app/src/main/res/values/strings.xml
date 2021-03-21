@@ -25,4 +25,5 @@
     <string name="copy_color_hash_code">Скопировать hash code цвета в буфер обмена</string>
     <string name="sharp">#</string>
     <string name="zero">0</string>
+    <string name="forget_all">Забыть как страшный сон</string>
 </resources>
