@@ -4,19 +4,25 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.get
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-    private var bottomNavigationView: BottomNavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         hideSystemUI()
-        bottomNavigationView?.background = null
-        bottomNavigationView?.menu?.getItem(2)?.isEnabled = false
+        hideBackGroundInBottomNavigation()
+    }
+
+    private fun hideBackGroundInBottomNavigation () {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        with(bottomNavigationView) {
+            menu.getItem(2).isEnabled = false
+            background = null
+        }
     }
 
     @Suppress("DEPRECATION")
