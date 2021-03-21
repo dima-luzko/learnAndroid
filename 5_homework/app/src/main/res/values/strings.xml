@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">iProfile</string>
+    <string name="profile">Profile</string>
+    <string name="name">Jessica Chastain</string>
+    <string name="actress">Actress&amp;Producer</string>
+    <string name="link">www.instagram.com/jessicachastain</string>
+    <string name="more_dot">More dot</string>
+    <string name="posts">Posts</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="follow">Follow</string>
 </resources>

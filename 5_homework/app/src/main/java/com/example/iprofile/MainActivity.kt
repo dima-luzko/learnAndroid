@@ -1,14 +1,22 @@
 package com.example.iprofile
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private var bottomNavigationView: BottomNavigationView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         hideSystemUI()
+        bottomNavigationView?.background = null
+        bottomNavigationView?.menu?.getItem(2)?.isEnabled = false
     }
 
     @Suppress("DEPRECATION")

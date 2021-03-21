@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ProfileTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/made_evolve_sans_evo_bold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="name">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/made_evolve_sans_bold</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="profession">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/gotham_narr_ss_m_book</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="values">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/gotham_narrow_black</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
