@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="photos">
+        <item>@drawable/first_photo</item>
+        <item>@drawable/second_photo</item>
+        <item>@drawable/third_photo</item>
+        <item>@drawable/four_photo</item>
+        <item>@drawable/five_photo</item>
+        <item>@drawable/six_photo</item>
+        <item>@drawable/seven_photo</item>
+        <item>@drawable/eight_photo</item>
+        <item>@drawable/nine_photo</item>
+    </integer-array>
+</resources>
