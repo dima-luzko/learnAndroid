@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -23,11 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
+            android:descendantFocusability="blocksDescendants"
             android:paddingStart="20dp"
             android:paddingTop="10dp"
-            android:paddingEnd="10dp"
-            android:descendantFocusability="blocksDescendants"
-            >
+            android:paddingEnd="10dp">
 
             <TextView
                 android:id="@+id/profile"
@@ -126,7 +125,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="28dp"
-                android:text="186"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontal_line_1" />
 

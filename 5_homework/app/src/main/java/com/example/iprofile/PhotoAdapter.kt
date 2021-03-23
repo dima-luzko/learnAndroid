@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-
-class PhotoAdapter(private val photoList: ArrayList<Photo>) :
+class PhotoAdapter(private val photoList: List<Int>) :
     RecyclerView.Adapter<PhotoAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,7 +23,7 @@ class PhotoAdapter(private val photoList: ArrayList<Photo>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = photoList[position]
-        holder.photos.setImageResource(item.photo_id)
+        holder.photos.setImageResource(item)
     }
 
 }

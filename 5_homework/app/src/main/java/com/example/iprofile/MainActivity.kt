@@ -1,12 +1,12 @@
 package com.example.iprofile
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.get
-import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,6 +22,18 @@ class MainActivity : AppCompatActivity() {
         hideBackGroundInBottomNavigation()
         addToRecyclerView()
 
+        val postsValue = findViewById<TextView>(R.id.posts_value)
+        postsValue.text = photosList().size.toString()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val button = findViewById<AppCompatButton>(R.id.follow_button)
+        val intent = Intent(this,PhotoActivity::class.java)
+        button.setOnClickListener{
+            startActivity(intent)
+        }
     }
 
     private fun addToRecyclerView() {
@@ -37,36 +49,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun photosList() = listOf(
+        R.drawable.first_photo,
+        R.drawable.second_photo,
+        R.drawable.third_photo,
+        R.drawable.four_photo,
+        R.drawable.five_photo,
+        R.drawable.six_photo,
+        R.drawable.seven_photo,
+        R.drawable.eight_photo,
+        R.drawable.nine_photo,
+        R.drawable.ten_photo,
+        R.drawable.eleven_photo,
+        R.drawable.twelve_photo,
+    )
 
-    private fun photosList(): ArrayList<Photo> {
-       // val photo = resources.getIntArray(R.array.photos)
-        val itemsPhoto: ArrayList<Photo> = ArrayList()
-        itemsPhoto.add(Photo(photo_id = R.drawable.first_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.second_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.third_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.four_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.five_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.six_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.seven_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.eight_photo))
-        itemsPhoto.add(Photo(photo_id = R.drawable.nine_photo))
-        return itemsPhoto
-
-//        with(resources.obtainTypedArray(R.array.photos)) {
-//            Photo(photo_id = this.getResourceId(0,0))
-//            recycle()
-//        }
-
-//        return photoItem.mapIndexed { _, photo ->
-//            Photo(
-//                photo_id = photo
-//            )
-//        }
-
-
-    }
-
-    private fun hideBackGroundInBottomNavigation () {
+    private fun hideBackGroundInBottomNavigation() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         with(bottomNavigationView) {
             menu.getItem(2).isEnabled = false
