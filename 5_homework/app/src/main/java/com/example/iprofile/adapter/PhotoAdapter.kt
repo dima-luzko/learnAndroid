@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iprofile.R
 
-class PhotoAdapter(private val photoList: List<Int>,val click: (Int) -> Unit) :
+class PhotoAdapter(private val photoList: List<Int>, private val click: (Int) -> Unit) :
     RecyclerView.Adapter<PhotoAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,13 +24,11 @@ class PhotoAdapter(private val photoList: List<Int>,val click: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = photoList[position]
-        with(holder){
+        with(holder) {
             photos.setImageResource(item)
-            photos.setOnClickListener{
+            photos.setOnClickListener {
                 click(item)
             }
         }
-
     }
-
 }
