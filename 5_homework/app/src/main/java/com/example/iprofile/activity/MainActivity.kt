@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         private val THEME_DEFAULT = 0
         private val THEME_MY_THEME = 1
 
-        fun changeTheme(activity: Activity, theme: Int){
+        fun changeTheme(activity: Activity, theme: Int) {
             sTheme = theme
             activity.finish()
             activity.startActivity(Intent(activity, activity.javaClass))
@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onActivityCreateTheme(this)
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         val changeTheme = findViewById<ImageView>(R.id.menu)
         changeTheme.setOnClickListener {
-            sTheme = if(sTheme ==0){
+            sTheme = if (sTheme == 0) {
                 changeTheme(this, THEME_MY_THEME)
                 1
             } else {
@@ -64,16 +63,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun addFollowers() {
         val buttonFollow = findViewById<AppCompatButton>(R.id.follow_button)
         val followTotal = findViewById<TextView>(R.id.followers_value)
         var totalCount: Int = 0
-        totalCount = followTotal.text.toString().toInt()
 
-        buttonFollow.setOnClickListener{
-            totalCount +=1
+        totalCount = followTotal.text.toString().toInt()
+        buttonFollow.setOnClickListener {
+            totalCount += 1
             followTotal.text = totalCount.toString()
         }
     }
@@ -85,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun addToRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-
         with(recyclerView) {
             layoutManager = StaggeredGridLayoutManager(
                 3,
