@@ -15,7 +15,7 @@
         android:maxHeight="520dp"
         android:src="@drawable/eight_photo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius_bottom_left="30dp"
@@ -53,16 +53,77 @@
 
     <TextView
         android:id="@+id/likes_total"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="100"
+        android:textAlignment="center"
         android:textColor="@color/red"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/photo_in_photo_activity"
         app:layout_constraintStart_toEndOf="@+id/likes"
         app:layout_constraintTop_toBottomOf="@+id/short_name"
         app:layout_constraintVertical_bias="0.885" />
+
+    <ImageView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/icon_comments"
+        android:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_in_photo_activity"
+        app:layout_constraintEnd_toEndOf="@+id/photo_in_photo_activity"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="@+id/photo_in_photo_activity"
+        app:layout_constraintTop_toBottomOf="@+id/short_name"
+        app:layout_constraintVertical_bias="0.885"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/comments_total"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="22"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_in_photo_activity"
+        app:layout_constraintStart_toEndOf="@+id/comments"
+        app:layout_constraintTop_toBottomOf="@+id/short_name"
+        app:layout_constraintVertical_bias="0.885" />
+
+    <ImageView
+        android:id="@+id/bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/icon_bookmark_outline"
+        android:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/photo_in_photo_activity"
+        app:layout_constraintEnd_toEndOf="@+id/photo_in_photo_activity"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/photo_in_photo_activity"
+        app:layout_constraintTop_toBottomOf="@+id/short_name"
+        app:layout_constraintVertical_bias="0.89"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/more_dot_in_photo_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/icon_more_dot"
+        android:backgroundTint="@color/red"
+        app:layout_constraintEnd_toEndOf="@+id/photo_in_photo_activity"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/short_name"
+        app:layout_constraintTop_toTopOf="@+id/photo_in_photo_activity"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
