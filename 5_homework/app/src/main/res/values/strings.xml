@@ -2,6 +2,10 @@
     <string name="app_name">iProfile</string>
     <string name="profile">Profile</string>
     <string name="name">Jessica Chastain</string>
+    <string name="name_people_1">Dzmitry Nagiev</string>
+    <string name="name_people_2">Leonardo DiCaprio</string>
+    <string name="comment_people_1">You are very beautiful!</string>
+    <string name="comment_people_2">Just gorgeous</string>
     <string name="short_name">Jessica</string>
     <string name="actress">Actress&amp;Producer</string>
     <string name="link">www.instagram.com/jessicachastain</string>
@@ -10,4 +14,6 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="follow">Follow</string>
+    <string name="add_comment">Add a comment...</string>
+    <string name="key_image">Photo Image</string>
 </resources>

@@ -1,14 +1,27 @@
-package com.example.iprofile
+package com.example.iprofile.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import com.example.iprofile.R
 
-class PhotoActivity : AppCompatActivity() {
+class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_photo)
+        setContentView(R.layout.activity_splash_screen)
         hideSystemUI()
+        transitionIntoMainActivity()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun transitionIntoMainActivity() {
+        Handler().postDelayed({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 3000)
     }
 
     @Suppress("DEPRECATION")

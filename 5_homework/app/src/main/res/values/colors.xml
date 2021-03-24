@@ -13,4 +13,6 @@
     <color name="red">#D51D1D</color>
     <color name="pink">#BC134D</color>
     <color name="airplane_button">#ecf2fc</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#20B2AA</color>
 </resources>

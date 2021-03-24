@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="photos">
-        <item>@drawable/first_photo</item>
-        <item>@drawable/second_photo</item>
-        <item>@drawable/third_photo</item>
-        <item>@drawable/four_photo</item>
-        <item>@drawable/five_photo</item>
-        <item>@drawable/six_photo</item>
-        <item>@drawable/seven_photo</item>
-        <item>@drawable/eight_photo</item>
-        <item>@drawable/nine_photo</item>
+        <item>@drawable/nagiev_photo</item>
+        <item>@drawable/di_caprio_photo</item>
     </integer-array>
+
+    <string-array name="people_name_in_comments">
+        <item>@string/name_people_1</item>
+        <item>@string/name_people_2</item>
+    </string-array>
+
+    <string-array name="comments_of_people">
+        <item>@string/comment_people_1</item>
+        <item>@string/comment_people_2</item>
+    </string-array>
 </resources>
