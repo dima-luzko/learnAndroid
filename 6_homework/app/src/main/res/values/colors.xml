@@ -10,4 +10,9 @@
     <color name="crimson">#DC143C</color>
     <color name="orange">#FB7500</color>
     <color name="green">#008000</color>
+    <color name="grey">#808080</color>
+    <color name="dark_blue">#040d39</color>
+    <color name="indigo">#4B0082</color>
+    <color name="red">#D51D1D</color>
+    <color name="pink">#BC134D</color>
 </resources>

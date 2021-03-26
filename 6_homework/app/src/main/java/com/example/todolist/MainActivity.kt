@@ -1,14 +1,25 @@
 package com.example.todolist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideSystemUI()
+        getCurrentDayAndDateNumber()
+
+    }
+
+    private fun getCurrentDayAndDateNumber() {
+        val currentDate = findViewById<TextView>(R.id.date_number)
+        val currentDay = findViewById<TextView>(R.id.day)
+        currentDay.text = android.text.format.DateFormat.format("EEEE", Calendar.getInstance())
+        currentDate.text = android.text.format.DateFormat.format("dd", Calendar.getInstance())
     }
 
     @Suppress("DEPRECATION")

@@ -2,5 +2,9 @@
     <string name="app_name">ToDo List</string>
     <string name="tasks">tasks</string>
     <string name="hello">Hello</string>
-    <string name="name">Dima Luzko</string>
+    <string name="name">Alexander Petrov</string>
+    <string name="category">Category</string>
+    <string name="today">Today\'s Task</string>
+    <string name="come_back">Come back</string>
+    <string name="add_new_name">Add new name ...</string>
 </resources>
