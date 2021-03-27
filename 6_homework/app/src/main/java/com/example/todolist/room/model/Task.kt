@@ -7,9 +7,9 @@ import java.time.LocalDate
 
 @Entity
 data class Task(
-    @PrimaryKey(autoGenerate = true) val uid: Int,
+    @PrimaryKey(autoGenerate = true) var uid: Int,
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "completed") val completed: Boolean,
-    @ColumnInfo(name = "date") val data: LocalDate
+    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "completed") val completed: Boolean = false,
+    @ColumnInfo(name = "date") val data: String?
 )

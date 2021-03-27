@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.data.Task
 
-class TasksAdapter(private val taskList: List<Task>) :
+class TasksAdapter(private val taskList: List<com.example.todolist.room.model.Task>) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,10 +26,10 @@ class TasksAdapter(private val taskList: List<Task>) :
     override fun getItemCount() = taskList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task: Task = taskList[position]
+        val task: com.example.todolist.room.model.Task = taskList[position]
         with(holder) {
-            icon.setImageResource(task.icon)
-            taskName.text = task.taskName
+            //icon.setImageResource(task.icon)
+            taskName.text = task.title
         }
     }
 }
