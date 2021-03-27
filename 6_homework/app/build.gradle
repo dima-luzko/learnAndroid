@@ -33,7 +33,10 @@ android {
 }
 
 dependencies {
+    def room_version = "2.2.6"
 
+//    implementation "androidx.room:room-runtime:$room_version"
+//    kapt "androidx.room:room-compiler:$room_version"
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

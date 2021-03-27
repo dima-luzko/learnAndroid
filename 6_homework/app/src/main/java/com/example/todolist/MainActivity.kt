@@ -4,6 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.adapter.CategoryAdapter
+import com.example.todolist.adapter.TasksAdapter
+import com.example.todolist.data.Category
+import com.example.todolist.data.Tasks
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,8 +18,89 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideSystemUI()
         getCurrentDayAndDateNumber()
-
+        addToCategoryRecyclerView()
+        addToTaskRecyclerView()
     }
+
+    private fun addToCategoryRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.category_recycler_view)
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(
+                this@MainActivity,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = CategoryAdapter(categoryList())
+            hasFixedSize()
+        }
+    }
+
+    private fun addToTaskRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(
+                this@MainActivity,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = TasksAdapter(taskList())
+            hasFixedSize()
+        }
+    }
+
+    private fun taskList() =
+        listOf(
+            Tasks(
+                icon = R.drawable.icon_homework,
+                taskName = "Помыть посуду"
+            ),
+            Tasks(
+                icon = R.drawable.icon_homework,
+                taskName = "Убраться в доме"
+            ),
+            Tasks(
+                icon = R.drawable.icon_workout,
+                taskName = "Покачать пресс"
+            ),
+            Tasks(
+                icon = R.drawable.icon_traveling,
+                taskName = "Сходить в лес за грибами"
+            )
+        )
+
+    private fun categoryList() =
+        listOf(
+            Category(
+                color = R.color.teal_700,
+                icon = R.drawable.icon_design,
+                name = "Design",
+                totalTask = 5
+            ),
+            Category(
+                color = R.color.crimson,
+                icon = R.drawable.icon_book,
+                name = "Learning",
+                totalTask = 1
+            ),
+            Category(
+                color = R.color.orange,
+                icon = R.drawable.icon_homework,
+                name = "Homework",
+                totalTask = 10
+            ),
+            Category(
+                color = R.color.indigo,
+                icon = R.drawable.icon_traveling,
+                name = "Traveling",
+                totalTask = 0
+            ),
+            Category(
+                color = R.color.green,
+                icon = R.drawable.icon_workout,
+                name = "Workout",
+                totalTask = 3
+            )
+        )
 
     private fun getCurrentDayAndDateNumber() {
         val currentDate = findViewById<TextView>(R.id.date_number)

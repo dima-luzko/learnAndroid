@@ -6,5 +6,9 @@
     <string name="category">Category</string>
     <string name="today">Today\'s Task</string>
     <string name="come_back">Come back</string>
-    <string name="add_new_name">Add new name ...</string>
+    <string name="add_new_name">Add new name …</string>
+    <string name="add_new_task">Add new task …</string>
+    <string name="add_new_task_text">Add New Task</string>
+    <string name="message">Be productive today\'s, and let\'s make some wonderful world with it.</string>
+    <string name="save">Save</string>
 </resources>

@@ -2,10 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_category"
     android:layout_width="190dp"
     android:layout_height="200dp"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/teal_700"
     app:cardCornerRadius="15dp"
     app:cardElevation="10dp">
 
@@ -19,15 +19,13 @@
             style="@style/category_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_design"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/category_name"
             style="@style/category_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Design" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +45,7 @@
                 style="@style/category_tasks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="5" />
+                android:layout_marginStart="10dp" />
 
             <TextView
                 style="@style/category_tasks"
