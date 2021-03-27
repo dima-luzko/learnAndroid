@@ -6,23 +6,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.todolist.adapter.CategoryAdapter
-import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.data.Category
-import com.example.todolist.data.Task
 import com.example.todolist.room.AppDatabase
-import com.example.todolist.room.dao.CategoryDao
-import com.example.todolist.room.dao.SubTaskDao
-import com.example.todolist.room.dao.TaskDao
-import com.example.todolist.room.model.SubTask
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var categoryDao: CategoryDao
-    private lateinit var taskDao: TaskDao
-    private lateinit var subTaskDao: SubTaskDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,35 +19,23 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
         getCurrentDayAndDateNumber()
         addToCategoryRecyclerView()
-        //addToTaskRecyclerView()
+//        addToTaskRecyclerView()
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "todo_list"
-        ).allowMainThreadQueries().build()
-
-        categoryDao = db.categoryDao()
-        taskDao = db.taskDao()
-        subTaskDao = db.subTaskDao()
 
       //db.taskDao().insert(com.example.todolist.room.model.Task(3,"yyyyyy","4444", false,"11.02" ))
-      //  db.taskDao().insert(com.example.todolist.room.model.Task(,"tttt","6666", false,"11.02" ))
-       //db.taskDao().delete(1)
-        db.taskDao().update("blablabla",1)
 
-        val all = db.taskDao().getAll()
-
-        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
-        with(recyclerView) {
-            layoutManager = LinearLayoutManager(
-                this@MainActivity,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-            adapter = TasksAdapter(all)
-            hasFixedSize()
-        }
+//        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
+//        with(recyclerView) {
+//            layoutManager = LinearLayoutManager(
+//                this@MainActivity,
+//                LinearLayoutManager.VERTICAL,
+//                false
+//            )
+//            adapter = TasksAdapter(all)
+//            hasFixedSize()
+//        }
     }
+
 
     private fun addToCategoryRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.category_recycler_view)
@@ -68,10 +45,12 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = CategoryAdapter(categoryList())
+            adapter = CategoryAdapter(AppDatabase.PREPOPULATE_DATA)
             hasFixedSize()
         }
     }
+
+
 
 //    private fun addToTaskRecyclerView() {
 //        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)

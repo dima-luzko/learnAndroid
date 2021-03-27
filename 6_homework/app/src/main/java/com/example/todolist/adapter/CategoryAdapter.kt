@@ -1,6 +1,7 @@
 package com.example.todolist.adapter
 
 import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.data.Category
+import com.squareup.picasso.Picasso
 
-class CategoryAdapter(private val categoryList: List<Category>) :
+class CategoryAdapter(private val categoryList: List<com.example.todolist.room.model.Category>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -30,12 +32,10 @@ class CategoryAdapter(private val categoryList: List<Category>) :
     override fun getItemCount() = categoryList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category: Category = categoryList[position]
-        with(holder) {
-            color.setCardBackgroundColor(category.color)
-            icon.setImageResource(category.icon)
-            nameCategory.text = category.name
-            total.text = category.totalTask.toString()
-        }
+        val category: com.example.todolist.room.model.Category = categoryList[position]
+
+        Picasso.get().load(category.pathImage).into(holder.icon)
+        holder.nameCategory.text = category.name
+
     }
 }
