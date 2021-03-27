@@ -34,16 +34,17 @@ class MainActivity : AppCompatActivity() {
 
         val db = Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "todo_list.db"
+            AppDatabase::class.java, "todo_list"
         ).allowMainThreadQueries().build()
 
         categoryDao = db.categoryDao()
         taskDao = db.taskDao()
         subTaskDao = db.subTaskDao()
 
-       // db.taskDao().insert(com.example.todolist.room.model.Task(0,"hah","4444", false,"11.02" ))
+      //db.taskDao().insert(com.example.todolist.room.model.Task(3,"yyyyyy","4444", false,"11.02" ))
       //  db.taskDao().insert(com.example.todolist.room.model.Task(,"tttt","6666", false,"11.02" ))
-        db.taskDao().delete(com.example.todolist.room.model.Task(1,"hah","4444", false,"11.02"))
+       //db.taskDao().delete(1)
+        db.taskDao().update("blablabla",1)
 
         val all = db.taskDao().getAll()
 
