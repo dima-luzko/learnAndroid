@@ -2,7 +2,7 @@ package com.example.todolist.data
 
 import androidx.annotation.DrawableRes
 
-data class Tasks(
+data class Task(
     @DrawableRes val icon: Int,
     val taskName: String
 )

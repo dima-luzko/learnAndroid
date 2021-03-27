@@ -1,6 +1,5 @@
 package com.example.todolist.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
-import com.example.todolist.data.Tasks
+import com.example.todolist.data.Task
 
-class TasksAdapter(private val taskList: List<Tasks>) :
+class TasksAdapter(private val taskList: List<Task>) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,7 +26,7 @@ class TasksAdapter(private val taskList: List<Tasks>) :
     override fun getItemCount() = taskList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task: Tasks = taskList[position]
+        val task: Task = taskList[position]
         with(holder) {
             icon.setImageResource(task.icon)
             taskName.text = task.taskName

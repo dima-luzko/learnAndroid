@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.adapter.CategoryAdapter
 import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.data.Category
-import com.example.todolist.data.Tasks
+import com.example.todolist.data.Task
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -50,19 +50,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun taskList() =
         listOf(
-            Tasks(
+            Task(
                 icon = R.drawable.icon_homework,
                 taskName = "Помыть посуду"
             ),
-            Tasks(
+            Task(
                 icon = R.drawable.icon_homework,
                 taskName = "Убраться в доме"
             ),
-            Tasks(
+            Task(
                 icon = R.drawable.icon_workout,
                 taskName = "Покачать пресс"
             ),
-            Tasks(
+            Task(
                 icon = R.drawable.icon_traveling,
                 taskName = "Сходить в лес за грибами"
             )
