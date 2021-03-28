@@ -11,4 +11,5 @@
     <string name="add_new_task_text">Add New Task</string>
     <string name="message">Be productive today\'s, and let\'s make some wonderful world with it.</string>
     <string name="save">Save</string>
+    <string name="zero">0</string>
 </resources>

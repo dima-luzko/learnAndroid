@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Category(
-    @PrimaryKey(autoGenerate = true) val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "name") val name: String?,
-    @ColumnInfo(name = "path_image") val pathImage: String?
+    @ColumnInfo(name = "path_image") val pathImage: Int?,
+    @ColumnInfo(name = "background_color") val backgroundColor: String?
 )

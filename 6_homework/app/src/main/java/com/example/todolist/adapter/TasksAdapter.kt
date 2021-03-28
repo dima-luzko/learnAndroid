@@ -1,20 +1,23 @@
 package com.example.todolist.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
-import com.example.todolist.data.Task
+import com.example.todolist.room.model.Task
 
-class TasksAdapter(private val taskList: List<com.example.todolist.room.model.Task>) :
+class TasksAdapter(private val taskList: List<Task>) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val icon: ImageView = view.findViewById(R.id.icon_for_task_in_description_screen)
         val taskName: TextView = view.findViewById(R.id.text_tasks_in_description_screen)
+        val taskBackground : CardView = view.findViewById(R.id.task_category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,10 +29,11 @@ class TasksAdapter(private val taskList: List<com.example.todolist.room.model.Ta
     override fun getItemCount() = taskList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task: com.example.todolist.room.model.Task = taskList[position]
+        val task: Task = taskList[position]
         with(holder) {
-            //icon.setImageResource(task.icon)
+            icon.setImageResource(task.pathImage!!)
             taskName.text = task.title
+            taskBackground.setCardBackgroundColor((Color.parseColor(task.backgroundColor)))
         }
     }
 }

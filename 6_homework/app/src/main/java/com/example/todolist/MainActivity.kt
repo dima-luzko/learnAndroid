@@ -1,5 +1,6 @@
 package com.example.todolist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -7,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.adapter.CategoryAdapter
-import com.example.todolist.data.Category
+import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.room.AppDatabase
 import java.util.*
 
@@ -19,105 +20,44 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
         getCurrentDayAndDateNumber()
         addToCategoryRecyclerView()
-//        addToTaskRecyclerView()
-
-
-      //db.taskDao().insert(com.example.todolist.room.model.Task(3,"yyyyyy","4444", false,"11.02" ))
-
-//        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
-//        with(recyclerView) {
-//            layoutManager = LinearLayoutManager(
-//                this@MainActivity,
-//                LinearLayoutManager.VERTICAL,
-//                false
-//            )
-//            adapter = TasksAdapter(all)
-//            hasFixedSize()
-//        }
+        addToTaskRecyclerView()
     }
 
 
     private fun addToCategoryRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.category_recycler_view)
+        val intent = Intent(this, AddNewTaskActivity::class.java)
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = CategoryAdapter(AppDatabase.PREPOPULATE_DATA)
+            adapter =
+                CategoryAdapter(AppDatabase.getInstance(this@MainActivity).categoryDao().getAll()) {
+                    intent.putExtra("CATEGORY_ID",it.uid)
+                    intent.putExtra("CATEGORY_PATH_IMAGE",it.pathImage)
+                    intent.putExtra("CATEGORY_BACKGROUND_COLOR",it.backgroundColor)
+                    startActivity(intent)
+                }
             hasFixedSize()
         }
     }
 
 
-
-//    private fun addToTaskRecyclerView() {
-//        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
-//        with(recyclerView) {
-//            layoutManager = LinearLayoutManager(
-//                this@MainActivity,
-//                LinearLayoutManager.VERTICAL,
-//                false
-//            )
-//            adapter = TasksAdapter(taskList())
-//            hasFixedSize()
-//        }
-//    }
-//
-//    private fun taskList() =
-//        listOf(
-//            Task(
-//                icon = R.drawable.icon_homework,
-//                taskName = "Помыть посуду"
-//            ),
-//            Task(
-//                icon = R.drawable.icon_homework,
-//                taskName = "Убраться в доме"
-//            ),
-//            Task(
-//                icon = R.drawable.icon_workout,
-//                taskName = "Покачать пресс"
-//            ),
-//            Task(
-//                icon = R.drawable.icon_traveling,
-//                taskName = "Сходить в лес за грибами"
-//            )
-//        )
-
-    private fun categoryList() =
-        listOf(
-            Category(
-                color = R.color.teal_700,
-                icon = R.drawable.icon_design,
-                name = "Design",
-                totalTask = 5
-            ),
-            Category(
-                color = R.color.crimson,
-                icon = R.drawable.icon_book,
-                name = "Learning",
-                totalTask = 1
-            ),
-            Category(
-                color = R.color.orange,
-                icon = R.drawable.icon_homework,
-                name = "Homework",
-                totalTask = 10
-            ),
-            Category(
-                color = R.color.indigo,
-                icon = R.drawable.icon_traveling,
-                name = "Traveling",
-                totalTask = 0
-            ),
-            Category(
-                color = R.color.green,
-                icon = R.drawable.icon_workout,
-                name = "Workout",
-                totalTask = 3
+    private fun addToTaskRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(
+                this@MainActivity,
+                LinearLayoutManager.VERTICAL,
+                false
             )
-        )
+            adapter = TasksAdapter(AppDatabase.getInstance(this@MainActivity).taskDao().getAll())
+            hasFixedSize()
+        }
+    }
+
 
     private fun getCurrentDayAndDateNumber() {
         val currentDate = findViewById<TextView>(R.id.date_number)

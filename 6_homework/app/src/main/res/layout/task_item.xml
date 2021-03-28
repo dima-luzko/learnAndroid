@@ -6,7 +6,6 @@
     android:id="@+id/task_category"
     android:layout_height="60dp"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/indigo"
     app:cardCornerRadius="15dp"
     app:cardElevation="10dp">
 

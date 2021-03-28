@@ -43,6 +43,7 @@
             <TextView
                 android:id="@+id/total_tasks"
                 style="@style/category_tasks"
+                android:text="@string/zero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp" />
@@ -56,6 +57,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/add_new_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

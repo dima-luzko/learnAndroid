@@ -1,7 +1,6 @@
 package com.example.todolist.adapter
 
 import android.graphics.Color
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,16 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
-import com.example.todolist.data.Category
-import com.squareup.picasso.Picasso
+import com.example.todolist.room.model.Category
 
-class CategoryAdapter(private val categoryList: List<com.example.todolist.room.model.Category>) :
+class CategoryAdapter(private val categoryList: List<Category>, private val click: (Category) -> Unit) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val color : CardView = view.findViewById(R.id.card_category)
         val icon: ImageView = view.findViewById(R.id.category_icon)
         val nameCategory: TextView = view.findViewById(R.id.category_name)
+        val buttonAddNewTask : ImageView = view.findViewById(R.id.add_new_task)
         val total: TextView = view.findViewById(R.id.total_tasks)
     }
 
@@ -32,10 +31,18 @@ class CategoryAdapter(private val categoryList: List<com.example.todolist.room.m
     override fun getItemCount() = categoryList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category: com.example.todolist.room.model.Category = categoryList[position]
+        val category: Category = categoryList[position]
 
-        Picasso.get().load(category.pathImage).into(holder.icon)
-        holder.nameCategory.text = category.name
+        //category.pathImage?.let { Picasso.get().load(it).into(holder.icon) }
+        with(holder){
+            icon.setImageResource(category.pathImage!!)
+            nameCategory.text = category.name
+            color.setCardBackgroundColor((Color.parseColor(category.backgroundColor)))
+            buttonAddNewTask.setOnClickListener {
+                click(category)
+            }
+        }
+
 
     }
 }

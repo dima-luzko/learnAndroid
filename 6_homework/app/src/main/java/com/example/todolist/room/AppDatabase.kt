@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.todolist.R
 import com.example.todolist.ioThread
 import com.example.todolist.room.dao.CategoryDao
 import com.example.todolist.room.dao.SubTaskDao
@@ -44,33 +45,34 @@ abstract class AppDatabase : RoomDatabase() {
                         }
                     }
                 })
+                .allowMainThreadQueries()
                 .build()
 
         val PREPOPULATE_DATA = listOf(
             Category(
-                uid = 1,
-                name = "Category",
-                pathImage = "src/main/res/drawable/icon_design.png"
+                name = "Design",
+                pathImage = R.drawable.icon_design,
+                backgroundColor = "#FF018786"
             ),
             Category(
-                uid = 2,
                 name = "Learning",
-                pathImage = "src/main/res/drawable/icon_book.png"
+                pathImage = R.drawable.icon_book,
+                backgroundColor = "#DC143C"
             ),
             Category(
-                uid = 3,
                 name = "Homework",
-                pathImage = "src/main/res/drawable/icon_homework.png"
+                pathImage = R.drawable.icon_homework,
+                backgroundColor = "#FB7500"
             ),
             Category(
-                uid = 4,
                 name = "Traveling",
-                pathImage = "src/main/res/drawable/icon_traveling.png"
+                pathImage = R.drawable.icon_traveling,
+                backgroundColor = "#4B0082"
             ),
             Category(
-                uid = 5,
                 name = "Workout",
-                pathImage = "src/main/res/drawable/icon_workout.png"
+                pathImage = R.drawable.icon_workout,
+                backgroundColor = "#008000"
             )
         )
     }
