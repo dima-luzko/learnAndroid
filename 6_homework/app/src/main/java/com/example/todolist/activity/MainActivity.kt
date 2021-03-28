@@ -1,19 +1,27 @@
 package com.example.todolist.activity
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.adapter.CategoryAdapter
 import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.room.AppDatabase
+import com.example.todolist.room.model.Task
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +56,50 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDialog(task: Task) {
+        val dialog = Dialog(this)
+
+        with(dialog) {
+            this.setCancelable(false)
+            this.setContentView(R.layout.edit_task_popup_window)
+        }
+
+        val backgroundColor = dialog.findViewById<CardView>(R.id.color_dialog_in_task)
+        val iconTask = dialog.findViewById<ImageView>(R.id.icon_for_task_in_update_screen)
+        val taskTitle = dialog.findViewById<TextView>(R.id.text_tasks_in_update_screen)
+        val updateTaskTitleButton = dialog.findViewById<ImageButton>(R.id.button_update_task_title)
+        val newTaskTitle = dialog.findViewById<EditText>(R.id.edit_task_title)
+        val getTaskParam = AppDatabase.getInstance(this@MainActivity).taskDao()
+
+        backgroundColor.setCardBackgroundColor(Color.parseColor(task.backgroundColor))
+        iconTask.setImageResource(task.pathImage!!)
+        taskTitle.text = task.title
+        updateTaskTitleButton.setOnClickListener {
+            val getNewTaskTitle: String = newTaskTitle.text.toString()
+            val builder = AlertDialog.Builder(this)
+            if (getNewTaskTitle.isEmpty()){
+                with(builder){
+                    setTitle(getString(R.string.attention))
+                    setIcon(R.drawable.attention)
+                    setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
+                    setCancelable(false)
+                    create()
+                    show()
+                }
+            } else {
+                getTaskParam.update(task)
+                dialog.dismiss()
+            }
+
+        }
+        dialog.show()
+    }
+
 
     private fun addToTaskRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
         val intent = Intent(this, TaskDetailActivity::class.java)
-        val getData = AppDatabase.getInstance(this@MainActivity).taskDao()
-        val taskList = AppDatabase.getInstance(this@MainActivity).taskDao().getAll()
+        val getTaskParam = AppDatabase.getInstance(this@MainActivity).taskDao()
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
@@ -61,9 +107,47 @@ class MainActivity : AppCompatActivity() {
                 false
             )
             adapter = TasksAdapter(
-                taskList,
-                deleteClick = {
-                    getData.delete(it)
+                getTaskParam.getAll(),
+                deleteTask = {
+                    getTaskParam.delete(it)
+                },
+                editTask = {
+                    val dialog = Dialog(this@MainActivity)
+
+                    with(dialog) {
+                        this.setCancelable(false)
+                        this.setContentView(R.layout.edit_task_popup_window)
+                    }
+
+                    val backgroundColor = dialog.findViewById<CardView>(R.id.color_dialog_in_task)
+                    val iconTask = dialog.findViewById<ImageView>(R.id.icon_for_task_in_update_screen)
+                    val taskTitle = dialog.findViewById<TextView>(R.id.text_tasks_in_update_screen)
+                    val updateTaskTitleButton = dialog.findViewById<ImageButton>(R.id.button_update_task_title)
+                    val newTaskTitle = dialog.findViewById<EditText>(R.id.edit_task_title)
+
+                    backgroundColor.setCardBackgroundColor(Color.parseColor(it.backgroundColor))
+                    iconTask.setImageResource(it.pathImage!!)
+                    taskTitle.text = it.title
+                    updateTaskTitleButton.setOnClickListener {
+                        val getNewTaskTitle: String = newTaskTitle.text.toString()
+                        val builder = AlertDialog.Builder(this@MainActivity)
+                        if (getNewTaskTitle.isEmpty()){
+                            with(builder){
+                                setTitle(getString(R.string.attention))
+                                setIcon(R.drawable.attention)
+                                setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
+                                setCancelable(false)
+                                create()
+                                show()
+                            }
+                        } else {
+                            //getTaskParam.update()
+                            dialog.dismiss()
+                        }
+
+                    }
+                    dialog.show()
+                    Toast.makeText(this@MainActivity,"click",Toast.LENGTH_LONG).show()
                 },
                 click = {
                     intent.putExtra("TASK_ID", it.uid)

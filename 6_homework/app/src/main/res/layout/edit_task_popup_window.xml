@@ -18,11 +18,10 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/colors_dialog_form"
+                android:id="@+id/color_dialog_in_task"
                 android:layout_width="320dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                android:backgroundTint="@color/dark_blue"
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
@@ -31,31 +30,31 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/icon_for_task_in_description_screen"
+                        android:id="@+id/icon_for_task_in_update_screen"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/icon_traveling"
                         app:tint="@color/white"
                         tools:ignore="ContentDescription" />
 
                     <TextView
+                        android:id="@+id/text_tasks_in_update_screen"
                         style="@style/text_tasks_in_description_screen"
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="Go to forest blalalla blaldasdasa blalbalal aga 123"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/edit_task_title"
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -73,31 +72,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="RtlSymmetry" />
 
-            <ImageButton
-                android:id="@+id/pastePin"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/grey"
-                android:layout_marginStart="-60dp"
-                android:src="@drawable/icon_airplane"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/button_update_task_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-60dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/grey"
+                    android:src="@drawable/icon_airplane"
+                    tools:ignore="ContentDescription" />
 
+            </LinearLayout>
         </LinearLayout>
-
-<!--            <androidx.appcompat.widget.AppCompatButton-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="20dp"-->
-<!--                android:background="@drawable/form_for_button_come_back"-->
-<!--                android:text="@string/come_back"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="16sp" />-->
-
-        </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
-
-
 </LinearLayout>

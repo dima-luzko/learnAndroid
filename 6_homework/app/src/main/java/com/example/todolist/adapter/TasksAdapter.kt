@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.graphics.component1
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.SwipeRevealLayout
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import com.example.todolist.R
-import com.example.todolist.room.dao.TaskDao
 import com.example.todolist.room.model.Task
 import kotlin.collections.ArrayList
 
 
 class TasksAdapter(
     private val taskList: List<Task>,
-    private val deleteClick: (Int) -> Unit,
+    private val deleteTask: (Task) -> Unit,
+    private val editTask: (Task) -> Unit,
     private val click: (Task) -> Unit
 ) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
@@ -29,7 +30,7 @@ class TasksAdapter(
         val icon: ImageView = view.findViewById(R.id.icon_for_task_in_description_screen)
         val taskName: TextView = view.findViewById(R.id.text_tasks_in_description_screen)
         val taskButton: CardView = view.findViewById(R.id.task_category)
-        val swipe: SwipeRevealLayout = view.findViewById(R.id.swipe)
+        //val swipe: SwipeRevealLayout = view.findViewById(R.id.swipe)
         val editButton: TextView = view.findViewById(R.id.edit_button)
         val deleteButton: TextView = view.findViewById(R.id.delete_button)
     }
@@ -40,15 +41,15 @@ class TasksAdapter(
         return ViewHolder(view)
     }
 
-    private fun deleteTask(task: Task, position: Int) {
-        (taskList as ArrayList<Task>).removeAt(task.uid)
-        notifyItemRemoved(position)
+    private fun delete(task: Task) {
+        val pos = taskList.indexOf(task)
+        (taskList as ArrayList<Task>).removeAt(pos)
+        notifyItemRemoved(pos)
     }
 
-    private fun editTask(item: Task) {
-        val pos = taskList.indexOf(item)
+    private fun update( newTaskTitle: String) {
+        val pos = taskList.indexOfFirst { it.title.equals(newTaskTitle, ignoreCase = true) }
         notifyItemChanged(pos)
-        notifyItemRangeChanged(pos, taskList.size)
     }
 
     override fun getItemCount() = taskList.size
@@ -63,10 +64,11 @@ class TasksAdapter(
                 click(task)
             }
             deleteButton.setOnClickListener {
-                deleteTask(task,position)
-                deleteClick(task.uid)
+                delete(task)
+                deleteTask(task)
             }
             editButton.setOnClickListener {
+                update(task.title!!)
                 editTask(task)
             }
 
