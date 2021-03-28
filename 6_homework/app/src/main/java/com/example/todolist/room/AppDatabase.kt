@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todolist.R
+import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.ioThread
 import com.example.todolist.room.dao.CategoryDao
 import com.example.todolist.room.dao.SubTaskDao

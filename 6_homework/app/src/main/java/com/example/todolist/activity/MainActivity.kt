@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.adapter.CategoryAdapter
 import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.room.AppDatabase
+import com.example.todolist.room.dao.TaskDao
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,19 +53,20 @@ class MainActivity : AppCompatActivity() {
     private fun addToTaskRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
         val intent = Intent(this, TaskDetailActivity::class.java)
+        val list = AppDatabase.getInstance(this@MainActivity).taskDao().getAll()
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = TasksAdapter(AppDatabase.getInstance(this@MainActivity).taskDao().getAll()) {
+            adapter = TasksAdapter(list,AppDatabase.getInstance(this@MainActivity).taskDao()) {
                 intent.putExtra("TASK_ID", it.uid)
                 startActivity(intent)
             }
+
             hasFixedSize()
         }
-
     }
 
 
