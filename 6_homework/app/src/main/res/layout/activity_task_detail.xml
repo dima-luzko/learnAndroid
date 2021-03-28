@@ -75,9 +75,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_come_back"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_task_form" />
+        app:layout_constraintTop_toBottomOf="@+id/description_task_form"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_come_back"

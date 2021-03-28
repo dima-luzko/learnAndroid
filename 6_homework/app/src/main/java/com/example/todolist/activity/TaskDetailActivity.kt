@@ -7,7 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
+import com.example.todolist.adapter.SubTaskAdapter
 import com.example.todolist.room.AppDatabase
 
 class TaskDetailActivity : AppCompatActivity() {
@@ -16,6 +19,7 @@ class TaskDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task_detail)
         hideSystemUI()
         showTaskDetail()
+        addToSubTaskRecyclerView()
     }
 
     override fun onStart() {
@@ -23,7 +27,22 @@ class TaskDetailActivity : AppCompatActivity() {
         val backIntent = Intent(this, MainActivity::class.java)
         val buttonComeBack = findViewById<AppCompatButton>(R.id.button_come_back)
         buttonComeBack.setOnClickListener {
-            startActivity(backIntent)
+            super.onBackPressed()
+        }
+    }
+
+    private fun addToSubTaskRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.sub_task_recycler_view)
+        val subTaskList = AppDatabase.getInstance(this@TaskDetailActivity).subTaskDao().getAll()
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(
+                this@TaskDetailActivity,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = SubTaskAdapter(subTaskList)
+            (adapter as SubTaskAdapter).notifyDataSetChanged()
+            hasFixedSize()
         }
     }
 
@@ -36,7 +55,7 @@ class TaskDetailActivity : AppCompatActivity() {
 
         taskName.text = getTaskParam.title
 
-        if (getTaskParam.description?.isEmpty()!!){
+        if (getTaskParam.description?.isEmpty()!!) {
             taskDescription.text = getString(R.string.no_description_task)
         } else {
             taskDescription.text = getTaskParam.description

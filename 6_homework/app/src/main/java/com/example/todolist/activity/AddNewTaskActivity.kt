@@ -44,8 +44,8 @@ class AddNewTaskActivity : AppCompatActivity() {
             val year = datePicker.year
             val fullDate = "$day.$month.$year"
 
-            if (getAddTaskName.isEmpty()){
-                with(builder){
+            if (getAddTaskName.isEmpty()) {
+                with(builder) {
                     setTitle(getString(R.string.attention))
                     setIcon(R.drawable.attention)
                     setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }

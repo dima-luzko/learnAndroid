@@ -15,10 +15,6 @@ class SplashScreen : AppCompatActivity() {
         transitionIntoMainActivity()
     }
 
-    private fun createCategory() {
-
-    }
-
     @Suppress("DEPRECATION")
     private fun transitionIntoMainActivity() {
         Handler().postDelayed({

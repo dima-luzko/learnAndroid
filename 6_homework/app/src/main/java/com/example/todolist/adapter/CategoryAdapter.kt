@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.room.model.Category
 
-class CategoryAdapter(private val categoryList: List<Category>, private val click: (Category) -> Unit) :
+class CategoryAdapter(
+    private val categoryList: List<Category>,
+    private val click: (Category) -> Unit
+) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val color : CardView = view.findViewById(R.id.card_category)
+        val color: CardView = view.findViewById(R.id.card_category)
         val icon: ImageView = view.findViewById(R.id.category_icon)
         val nameCategory: TextView = view.findViewById(R.id.category_name)
-        val buttonAddNewTask : ImageView = view.findViewById(R.id.add_new_task)
+        val buttonAddNewTask: ImageView = view.findViewById(R.id.add_new_task)
         val total: TextView = view.findViewById(R.id.total_tasks)
     }
 
@@ -34,7 +37,7 @@ class CategoryAdapter(private val categoryList: List<Category>, private val clic
         val category: Category = categoryList[position]
 
         //category.pathImage?.let { Picasso.get().load(it).into(holder.icon) }
-        with(holder){
+        with(holder) {
             icon.setImageResource(category.pathImage!!)
             nameCategory.text = category.name
             color.setCardBackgroundColor((Color.parseColor(category.backgroundColor)))

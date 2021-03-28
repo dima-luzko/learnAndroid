@@ -9,6 +9,9 @@ interface TaskDao {
     @Query("SELECT * FROM task")
     fun getAll(): List<Task>
 
+//    @Query("SELECT count(uid = :uid) from task WHERE category_id = :category_id")
+//    fun getCountTaskInCategory(uid: Int, category_id: Int)
+
     @Query("SELECT * FROM task WHERE uid = :uid LIMIT 1")
     fun findById(uid: Int): Task
 

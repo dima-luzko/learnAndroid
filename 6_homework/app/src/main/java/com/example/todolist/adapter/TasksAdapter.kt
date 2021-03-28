@@ -20,19 +20,18 @@ class TasksAdapter(
     private val taskList: List<Task>,
     private val deleteTask: (Task) -> Unit,
     private val editTask: (Task) -> Unit,
+    private val addSubTask: (Task) -> Unit,
     private val click: (Task) -> Unit
 ) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
-    private val viewBinderHelper = ViewBinderHelper()
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: ImageView = view.findViewById(R.id.icon_for_task_in_description_screen)
-        val taskName: TextView = view.findViewById(R.id.text_tasks_in_description_screen)
+        val icon: ImageView = view.findViewById(R.id.icon_for_task)
+        val taskName: TextView = view.findViewById(R.id.text_tasks)
         val taskButton: CardView = view.findViewById(R.id.task_category)
-        //val swipe: SwipeRevealLayout = view.findViewById(R.id.swipe)
         val editButton: TextView = view.findViewById(R.id.edit_button)
         val deleteButton: TextView = view.findViewById(R.id.delete_button)
+        val addSubTaskButton: TextView = view.findViewById(R.id.add_sub_task_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,9 +46,14 @@ class TasksAdapter(
         notifyItemRemoved(pos)
     }
 
-    private fun update( newTaskTitle: String) {
-        val pos = taskList.indexOfFirst { it.title.equals(newTaskTitle, ignoreCase = true) }
-        notifyItemChanged(pos)
+//    private fun update( newTaskTitle: String) {
+//        val pos = taskList.indexOfFirst { it.title.equals(newTaskTitle, ignoreCase = true) }
+//        notifyItemChanged(pos)
+//    }
+
+    private fun update(position: Int, newTaskTitle: String) {
+        taskList[position].title = newTaskTitle
+        notifyItemChanged(position)
     }
 
     override fun getItemCount() = taskList.size
@@ -68,8 +72,11 @@ class TasksAdapter(
                 deleteTask(task)
             }
             editButton.setOnClickListener {
-                update(task.title!!)
+                //update(task.title!!)
                 editTask(task)
+            }
+            addSubTaskButton.setOnClickListener {
+                addSubTask(task)
             }
 
         }
