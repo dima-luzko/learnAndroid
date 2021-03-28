@@ -1,6 +1,5 @@
 package com.example.todolist.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
@@ -32,7 +31,6 @@ class AddNewTaskActivity : AppCompatActivity() {
         val taskName = findViewById<EditText>(R.id.add_new_task_in_edit_text)
         val taskDescription = findViewById<EditText>(R.id.add_description_task_in_edit_text)
         val buttonSave = findViewById<AppCompatButton>(R.id.button_save)
-        val backIntent = Intent(this, MainActivity::class.java)
 
         buttonSave.setOnClickListener {
             val getAddTaskName: String = taskName.text.toString()
@@ -65,7 +63,7 @@ class AddNewTaskActivity : AppCompatActivity() {
                         backgroundColor = backgroundColor
                     )
                 )
-                startActivity(backIntent)
+                super.onBackPressed()
             }
         }
     }

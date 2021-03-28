@@ -1,6 +1,5 @@
 package com.example.todolist.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,7 +23,6 @@ class TaskDetailActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val backIntent = Intent(this, MainActivity::class.java)
         val buttonComeBack = findViewById<AppCompatButton>(R.id.button_come_back)
         buttonComeBack.setOnClickListener {
             super.onBackPressed()

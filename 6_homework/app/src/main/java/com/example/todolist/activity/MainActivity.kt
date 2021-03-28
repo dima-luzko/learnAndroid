@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             )
             adapter =
                 CategoryAdapter(categoryList) {
+                    val categoryId = it.uid
                     intent.putExtra("CATEGORY_ID", it.uid)
                     intent.putExtra("CATEGORY_PATH_IMAGE", it.pathImage)
                     intent.putExtra("CATEGORY_BACKGROUND_COLOR", it.backgroundColor)
@@ -160,12 +161,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getCurrentDayAndDateNumber() {
-        val currentDate = findViewById<TextView>(R.id.date_number)
-        val currentDay = findViewById<TextView>(R.id.day)
-        currentDay.text = android.text.format.DateFormat.format("EEEE", Calendar.getInstance())
-        currentDate.text = android.text.format.DateFormat.format("dd", Calendar.getInstance())
+        val date = findViewById<TextView>(R.id.date_number)
+        val day = findViewById<TextView>(R.id.day)
+        day.text = android.text.format.DateFormat.format("EEEE", Calendar.getInstance())
+        date.text = android.text.format.DateFormat.format("dd", Calendar.getInstance())
     }
 
     @Suppress("DEPRECATION")
