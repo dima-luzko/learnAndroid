@@ -8,8 +8,12 @@
     <string name="come_back">Come back</string>
     <string name="add_new_name">Add new name …</string>
     <string name="add_new_task">Add new task …</string>
+    <string name="add_description_task">Add description task …</string>
     <string name="add_new_task_text">Add New Task</string>
+    <string name="no_description_task">This task has no description</string>
     <string name="message">Be productive today\'s, and let\'s make some wonderful world with it.</string>
     <string name="save">Save</string>
     <string name="zero">0</string>
+    <string name="ok">OK</string>
+    <string name="attention">Task title don\'t be empty!!</string>
 </resources>

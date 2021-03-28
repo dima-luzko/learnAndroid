@@ -1,12 +1,14 @@
-package com.example.todolist
+package com.example.todolist.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.R
 import com.example.todolist.adapter.CategoryAdapter
 import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.room.AppDatabase
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         getCurrentDayAndDateNumber()
         addToCategoryRecyclerView()
         addToTaskRecyclerView()
+
     }
 
 
@@ -35,9 +38,9 @@ class MainActivity : AppCompatActivity() {
             )
             adapter =
                 CategoryAdapter(AppDatabase.getInstance(this@MainActivity).categoryDao().getAll()) {
-                    intent.putExtra("CATEGORY_ID",it.uid)
-                    intent.putExtra("CATEGORY_PATH_IMAGE",it.pathImage)
-                    intent.putExtra("CATEGORY_BACKGROUND_COLOR",it.backgroundColor)
+                    intent.putExtra("CATEGORY_ID", it.uid)
+                    intent.putExtra("CATEGORY_PATH_IMAGE", it.pathImage)
+                    intent.putExtra("CATEGORY_BACKGROUND_COLOR", it.backgroundColor)
                     startActivity(intent)
                 }
             hasFixedSize()
@@ -47,13 +50,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun addToTaskRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
+        val intent = Intent(this, TaskDetailActivity::class.java)
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = TasksAdapter(AppDatabase.getInstance(this@MainActivity).taskDao().getAll())
+            adapter = TasksAdapter(AppDatabase.getInstance(this@MainActivity).taskDao().getAll()) {
+                intent.putExtra("TASK_ID", it.uid)
+                startActivity(intent)
+            }
             hasFixedSize()
         }
     }

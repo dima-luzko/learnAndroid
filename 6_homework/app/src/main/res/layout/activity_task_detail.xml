@@ -7,7 +7,7 @@
     android:padding="20dp">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/background_task_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/task_form"
@@ -23,52 +23,51 @@
         android:id="@+id/icon_for_task_in_description_screen"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/icon_traveling"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+        app:layout_constraintBottom_toBottomOf="@+id/background_task_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="@+id/imageView1"
-        app:layout_constraintTop_toTopOf="@+id/imageView1"
+        app:layout_constraintStart_toStartOf="@+id/background_task_color"
+        app:layout_constraintTop_toTopOf="@+id/background_task_color"
         app:tint="@color/white"
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/title_tasks_in_description_screen"
         style="@style/text_tasks_in_description_screen"
         android:textColor="@color/white"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Go to forest blalalla blaldasdasa blalbalal aga 123"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintEnd_toEndOf="@+id/imageView1"
+        app:layout_constraintBottom_toBottomOf="@+id/background_task_color"
+        app:layout_constraintEnd_toEndOf="@+id/background_task_color"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toEndOf="@+id/icon_for_task_in_description_screen"
-        app:layout_constraintTop_toTopOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="@+id/background_task_color"
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/description_task_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/form_description_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1"
+        app:layout_constraintTop_toBottomOf="@+id/background_task_color"
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/description_task_in_description_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="6"
         android:padding="10dp"
-        android:text="dsdsdsdsdsds asdsadasdas sada safdasfa fdsfadFDSGSDGSDGS  aldjajdkjadasdnlasndklnaskndnasndas asldhlkashkdlhaklshd askdhlashdkashl lasdhlkashdash salhdkahsdkshls salkdhsakhasas klahsdlkashhdash4343"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/description_task_form"
+        app:layout_constraintEnd_toEndOf="@+id/description_task_form"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/description_task_form"
+        app:layout_constraintTop_toTopOf="@+id/description_task_form"
         app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -78,9 +77,10 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/description_task_form" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_come_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/form_for_button_come_back"

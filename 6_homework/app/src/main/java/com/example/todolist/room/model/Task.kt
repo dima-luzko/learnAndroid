@@ -17,7 +17,7 @@ import java.time.LocalDate
 data class Task(
     @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "title") var title: String?,
-    @ColumnInfo(name = "description") val description: String? = null,
+    @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "completed") val completed: Boolean = false,
     @ColumnInfo(name = "date") val date: String?,
     @ColumnInfo(name = "path_image") val pathImage: Int?,

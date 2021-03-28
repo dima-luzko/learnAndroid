@@ -8,7 +8,7 @@
     android:background="@color/teal_700">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/background_task_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -25,10 +25,10 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Go to forest blalalla blaldasdasa blalbalal aga 123"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintEnd_toEndOf="@+id/imageView1"
-        app:layout_constraintStart_toStartOf="@+id/imageView1"
-        app:layout_constraintTop_toTopOf="@+id/imageView1" />
+        app:layout_constraintBottom_toBottomOf="@+id/background_task_color"
+        app:layout_constraintEnd_toEndOf="@+id/background_task_color"
+        app:layout_constraintStart_toStartOf="@+id/background_task_color"
+        app:layout_constraintTop_toTopOf="@+id/background_task_color" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

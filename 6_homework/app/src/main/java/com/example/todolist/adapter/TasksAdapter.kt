@@ -8,16 +8,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.chauthai.swipereveallayout.SwipeRevealLayout
 import com.example.todolist.R
 import com.example.todolist.room.model.Task
 
-class TasksAdapter(private val taskList: List<Task>) :
+class TasksAdapter(private val taskList: List<Task>, private val click: (Task) -> Unit) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val icon: ImageView = view.findViewById(R.id.icon_for_task_in_description_screen)
         val taskName: TextView = view.findViewById(R.id.text_tasks_in_description_screen)
-        val taskBackground : CardView = view.findViewById(R.id.task_category)
+        val taskButton: CardView = view.findViewById(R.id.task_category)
+//        val swipe :SwipeRevealLayout = view.findViewById(R.id.swipe)
+//        val textEdit : TextView = view.findViewById(R.id.edit_button)
+//        val textDelete : TextView = view.findViewById(R.id.delete_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +37,15 @@ class TasksAdapter(private val taskList: List<Task>) :
         with(holder) {
             icon.setImageResource(task.pathImage!!)
             taskName.text = task.title
-            taskBackground.setCardBackgroundColor((Color.parseColor(task.backgroundColor)))
+            taskButton.setCardBackgroundColor((Color.parseColor(task.backgroundColor)))
+            taskButton.setOnClickListener {
+                click(task)
+            }
         }
     }
+
+    private fun deleteItem(pos: Int) {
+
+    }
 }
+
