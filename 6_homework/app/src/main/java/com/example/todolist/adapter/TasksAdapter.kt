@@ -16,7 +16,11 @@ import com.example.todolist.room.model.Task
 import kotlin.collections.ArrayList
 
 
-class TasksAdapter(private val taskList: List<Task>, private val taskDao: TaskDao, private val click: (Task) -> Unit) :
+class TasksAdapter(
+    private val taskList: List<Task>,
+    private val deleteClick: (Int) -> Unit,
+    private val click: (Task) -> Unit
+) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     private val viewBinderHelper = ViewBinderHelper()
@@ -26,8 +30,7 @@ class TasksAdapter(private val taskList: List<Task>, private val taskDao: TaskDa
         val taskName: TextView = view.findViewById(R.id.text_tasks_in_description_screen)
         val taskButton: CardView = view.findViewById(R.id.task_category)
         val swipe: SwipeRevealLayout = view.findViewById(R.id.swipe)
-
-        //        val textEdit : TextView = view.findViewById(R.id.edit_button)
+        val editButton: TextView = view.findViewById(R.id.edit_button)
         val deleteButton: TextView = view.findViewById(R.id.delete_button)
     }
 
@@ -37,13 +40,16 @@ class TasksAdapter(private val taskList: List<Task>, private val taskDao: TaskDa
         return ViewHolder(view)
     }
 
-    private fun deleteTask(item: Task) {
-        val pos = taskList.indexOf(item)
-        (taskList as ArrayList<Task>).removeAt(pos)
-        notifyItemRemoved(pos)
-        taskDao.delete(pos)
+    private fun deleteTask(task: Task, position: Int) {
+        (taskList as ArrayList<Task>).removeAt(task.uid)
+        notifyItemRemoved(position)
     }
 
+    private fun editTask(item: Task) {
+        val pos = taskList.indexOf(item)
+        notifyItemChanged(pos)
+        notifyItemRangeChanged(pos, taskList.size)
+    }
 
     override fun getItemCount() = taskList.size
 
@@ -57,10 +63,14 @@ class TasksAdapter(private val taskList: List<Task>, private val taskDao: TaskDa
                 click(task)
             }
             deleteButton.setOnClickListener {
-                deleteTask(task)
+                deleteTask(task,position)
+                deleteClick(task.uid)
             }
+            editButton.setOnClickListener {
+                editTask(task)
+            }
+
         }
-//        viewBinderHelper.bind(holder.swipe, task.uid.toString())
     }
 }
 

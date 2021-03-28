@@ -11,11 +11,9 @@ import com.example.todolist.R
 import com.example.todolist.adapter.CategoryAdapter
 import com.example.todolist.adapter.TasksAdapter
 import com.example.todolist.room.AppDatabase
-import com.example.todolist.room.dao.TaskDao
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun addToCategoryRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.category_recycler_view)
         val intent = Intent(this, AddNewTaskActivity::class.java)
+        val categoryList = AppDatabase.getInstance(this@MainActivity).categoryDao().getAll()
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 false
             )
             adapter =
-                CategoryAdapter(AppDatabase.getInstance(this@MainActivity).categoryDao().getAll()) {
+                CategoryAdapter(categoryList) {
                     intent.putExtra("CATEGORY_ID", it.uid)
                     intent.putExtra("CATEGORY_PATH_IMAGE", it.pathImage)
                     intent.putExtra("CATEGORY_BACKGROUND_COLOR", it.backgroundColor)
@@ -53,17 +52,23 @@ class MainActivity : AppCompatActivity() {
     private fun addToTaskRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.task_recycler_view)
         val intent = Intent(this, TaskDetailActivity::class.java)
-        val list = AppDatabase.getInstance(this@MainActivity).taskDao().getAll()
+        val getData = AppDatabase.getInstance(this@MainActivity).taskDao()
+        val taskList = AppDatabase.getInstance(this@MainActivity).taskDao().getAll()
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = TasksAdapter(list,AppDatabase.getInstance(this@MainActivity).taskDao()) {
-                intent.putExtra("TASK_ID", it.uid)
-                startActivity(intent)
-            }
+            adapter = TasksAdapter(
+                taskList,
+                deleteClick = {
+                    getData.delete(it)
+                },
+                click = {
+                    intent.putExtra("TASK_ID", it.uid)
+                    startActivity(intent)
+                })
 
             hasFixedSize()
         }
