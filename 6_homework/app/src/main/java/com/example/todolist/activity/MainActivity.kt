@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity() {
                     getTaskParam.delete(it)
                 },
                 editTask = {
-
                     with(dialog) {
                         this.setCancelable(false)
                         this.setContentView(R.layout.edit_task_popup_window)
