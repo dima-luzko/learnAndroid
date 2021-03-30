@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.giphy.adapter.GifAdapter
 import com.example.giphy.data.Gif
-import com.example.giphy.retrofit.common.Common
-import com.example.giphy.retrofit.service.APIGif
+import com.example.giphy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +17,6 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private var isFirsPressed: Boolean = true
-    private val gifService: APIGif = Common.retrofitService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun addToRecyclerViewAsGridLayoutManager() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        gifService.getGifList().enqueue(object : Callback<List<Gif>> {
+        RetrofitClient.instance.getGifList().enqueue(object : Callback<List<Gif>> {
             override fun onFailure(call: Call<List<Gif>>, t: Throwable) {
             }
             override fun onResponse(call: Call<List<Gif>>, response: Response<List<Gif>>) {
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun addToRecyclerViewAsLinearLayoutManager() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        gifService.getGifList().enqueue(object : Callback<List<Gif>> {
+        RetrofitClient.instance.getGifList().enqueue(object : Callback<List<Gif>> {
             override fun onFailure(call: Call<List<Gif>>, t: Throwable) {
             }
             override fun onResponse(call: Call<List<Gif>>, response: Response<List<Gif>>) {
