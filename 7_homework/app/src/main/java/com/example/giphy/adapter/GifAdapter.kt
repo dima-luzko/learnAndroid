@@ -26,6 +26,5 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
         val item = gifList[position]
 
         Picasso.get().load(item.gif).into(holder.gif)
-        // holder.gif.setImageResource(item.gif)
     }
 }
