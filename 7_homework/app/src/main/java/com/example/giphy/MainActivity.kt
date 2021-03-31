@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.giphy.adapter.GifAdapter
+import com.example.giphy.data.Data
 import com.example.giphy.data.Gif
 import com.example.giphy.retrofit.RetrofitClient
 import retrofit2.Call
@@ -45,16 +46,16 @@ class MainActivity : AppCompatActivity() {
     private fun addToRecyclerViewAsGridLayoutManager() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        RetrofitClient.instance.getGifList().enqueue(object : Callback<List<Gif>> {
-            override fun onFailure(call: Call<List<Gif>>, t: Throwable) {
+        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
+            override fun onFailure(call: Call<Data>, t: Throwable) {
             }
-            override fun onResponse(call: Call<List<Gif>>, response: Response<List<Gif>>) {
+            override fun onResponse(call: Call<Data>, response: Response<Data>) {
                 with(recyclerView) {
                     layoutManager = StaggeredGridLayoutManager(
                         3,
                         LinearLayoutManager.VERTICAL
                     )
-                    adapter = GifAdapter(response.body() as List<Gif>)
+                    adapter = GifAdapter(response.body()?.data as List<Gif>)
                     hasFixedSize()
                 }
             }
@@ -64,17 +65,17 @@ class MainActivity : AppCompatActivity() {
     private fun addToRecyclerViewAsLinearLayoutManager() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
-        RetrofitClient.instance.getGifList().enqueue(object : Callback<List<Gif>> {
-            override fun onFailure(call: Call<List<Gif>>, t: Throwable) {
+        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
+            override fun onFailure(call: Call<Data>, t: Throwable) {
             }
-            override fun onResponse(call: Call<List<Gif>>, response: Response<List<Gif>>) {
+            override fun onResponse(call: Call<Data>, response: Response<Data>) {
                 with(recyclerView) {
                     layoutManager = LinearLayoutManager(
                         this@MainActivity,
                         LinearLayoutManager.VERTICAL,
                         false
                     )
-                    adapter = GifAdapter(response.body() as List<Gif>)
+                    adapter = GifAdapter(response.body()?.data as List<Gif>)
                     hasFixedSize()
                 }
             }

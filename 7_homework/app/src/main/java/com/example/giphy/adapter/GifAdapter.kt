@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.giphy.R
+import com.example.giphy.data.Data
 import com.example.giphy.data.Gif
 import com.squareup.picasso.Picasso
 import pl.droidsonroids.gif.GifImageView
@@ -12,7 +13,7 @@ import pl.droidsonroids.gif.GifImageView
 class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val gif: GifImageView = view.findViewById(R.id.gif)
+        val gifImageList: GifImageView = view.findViewById(R.id.gif)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +26,6 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = gifList[position]
 
-        Picasso.get().load(item.gif).into(holder.gif)
+        Picasso.get().load(item.gif).into(holder.gifImageList)
     }
 }

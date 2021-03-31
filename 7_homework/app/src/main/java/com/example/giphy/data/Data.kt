@@ -2,7 +2,7 @@ package com.example.giphy.data
 
 import com.google.gson.annotations.SerializedName
 
-data class Gif (
-  @SerializedName("embed_url")
-  val gif: String? = null
+data class Data(
+    @SerializedName("data")
+    val data: List<Gif>?
 )
