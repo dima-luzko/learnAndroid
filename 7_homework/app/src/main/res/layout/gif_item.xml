@@ -7,9 +7,9 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="15dp">
 
-    <pl.droidsonroids.gif.GifImageView
+    <ImageView
         android:id="@+id/gif"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="200dp"
         android:maxWidth="320dp"
@@ -19,6 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gif_name"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </androidx.cardview.widget.CardView>
