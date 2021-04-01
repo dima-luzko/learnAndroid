@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class GifEntity (
     @SerializedName("images")
-    val images: List<Images>
+    val images: Images?
 )

@@ -26,7 +26,7 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = gifList[position]
-        Glide.with(holder.gifImageList.context).asGif().load(item.gifUrl).into(holder.gifImageList)
+        Glide.with(holder.gifImageList.context).load(item.gifUrl).into(holder.gifImageList)
         // holder.name.text = item.name
     }
 }
