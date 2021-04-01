@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.giphy.adapter.GifAdapter
 import com.example.giphy.data.Data
 import com.example.giphy.data.Gif
+import com.example.giphy.data.GifEntity
 import com.example.giphy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,23 +25,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideSystemUI()
         addToRecyclerViewAsGridLayoutManager()
-        changeRecyclerViewManager()
+     //   changeRecyclerViewManager()
     }
 
-    private fun changeRecyclerViewManager() {
-        val menuButton = findViewById<ImageView>(R.id.menu_button)
-        menuButton.setOnClickListener {
-            isFirsPressed = if (isFirsPressed) {
-                menuButton.setImageResource(R.drawable.icon_black_grid_menu)
-                addToRecyclerViewAsLinearLayoutManager()
-                false
-            } else {
-                menuButton.setImageResource(R.drawable.icon_black_vertical_menu)
-                addToRecyclerViewAsGridLayoutManager()
-                true
-            }
-        }
-    }
+//    private fun changeRecyclerViewManager() {
+//        val menuButton = findViewById<ImageView>(R.id.menu_button)
+//        menuButton.setOnClickListener {
+//            isFirsPressed = if (isFirsPressed) {
+//                menuButton.setImageResource(R.drawable.icon_black_grid_menu)
+//                addToRecyclerViewAsLinearLayoutManager()
+//                false
+//            } else {
+//                menuButton.setImageResource(R.drawable.icon_black_vertical_menu)
+//                addToRecyclerViewAsGridLayoutManager()
+//                true
+//            }
+//        }
+//    }
 
 
     private fun addToRecyclerViewAsGridLayoutManager() {
@@ -49,38 +50,46 @@ class MainActivity : AppCompatActivity() {
         RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
             override fun onFailure(call: Call<Data>, t: Throwable) {
             }
+
             override fun onResponse(call: Call<Data>, response: Response<Data>) {
                 with(recyclerView) {
                     layoutManager = StaggeredGridLayoutManager(
                         3,
                         LinearLayoutManager.VERTICAL
                     )
-                    adapter = GifAdapter(response.body()?.data as List<Gif>)
+                    adapter = GifAdapter(response.body()?.data?.asSequence()?.map {
+                        it.images.map { original ->
+                            original.original.map { gif ->
+                                Gif(gifUrl = gif.gifUrl)
+                            }
+                        }
+                    }.toList())
                     hasFixedSize()
                 }
             }
         })
     }
 
-    private fun addToRecyclerViewAsLinearLayoutManager() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-
-        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
-            override fun onFailure(call: Call<Data>, t: Throwable) {
-            }
-            override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                with(recyclerView) {
-                    layoutManager = LinearLayoutManager(
-                        this@MainActivity,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    adapter = GifAdapter(response.body()?.data as List<Gif>)
-                    hasFixedSize()
-                }
-            }
-        })
-    }
+//    private fun addToRecyclerViewAsLinearLayoutManager() {
+//        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+//
+//        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
+//            override fun onFailure(call: Call<Data>, t: Throwable) {
+//            }
+//
+//            override fun onResponse(call: Call<Data>, response: Response<Data>) {
+//                with(recyclerView) {
+//                    layoutManager = LinearLayoutManager(
+//                        this@MainActivity,
+//                        LinearLayoutManager.VERTICAL,
+//                        false
+//                    )
+//                    adapter = GifAdapter(response.body()?.data as List<Gif>)
+//                    hasFixedSize()
+//                }
+//            }
+//        })
+//    }
 
     @Suppress("DEPRECATION")
     private fun hideSystemUI() {
