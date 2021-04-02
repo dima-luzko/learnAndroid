@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.giphy.R
 import com.example.giphy.data.Gif
 
@@ -27,6 +29,7 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = gifList[position]
         Glide.with(holder.gifImageList.context).load(item.gifUrl).into(holder.gifImageList)
+
         // holder.name.text = item.name
     }
 }

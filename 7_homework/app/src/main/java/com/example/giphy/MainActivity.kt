@@ -1,5 +1,6 @@
 package com.example.giphy
 
+import android.app.Application
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
