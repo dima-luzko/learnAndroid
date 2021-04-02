@@ -1,18 +1,16 @@
 package com.example.giphy
 
-import android.app.Application
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.giphy.adapter.GifAdapter
 import com.example.giphy.data.Data
 import com.example.giphy.data.Gif
-import com.example.giphy.data.GifEntity
 import com.example.giphy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,74 +18,79 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private var isFirsPressed: Boolean = true
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideSystemUI()
+        getMemGifList()
         addToRecyclerViewAsGridLayoutManager()
-        changeRecyclerViewManager()
     }
 
-    private fun changeRecyclerViewManager() {
-        val menuButton = findViewById<ImageView>(R.id.menu_button)
-        menuButton.setOnClickListener {
-            isFirsPressed = if (isFirsPressed) {
-                menuButton.setImageResource(R.drawable.icon_black_grid_menu)
-                addToRecyclerViewAsLinearLayoutManager()
-                false
-            } else {
-                menuButton.setImageResource(R.drawable.icon_black_vertical_menu)
-                addToRecyclerViewAsGridLayoutManager()
-                true
-            }
-        }
-    }
+    private fun getMemGifList() {
+        recyclerView = findViewById(R.id.recycler_view)
 
+        RetrofitClient.instance.getMemGifList()
+            .enqueue(object : Callback<Data> {
+                override fun onFailure(call: Call<Data>, t: Throwable) {
+                }
+
+                override fun onResponse(call: Call<Data>, response: Response<Data>) {
+                    with(recyclerView) {
+                        layoutManager = GridLayoutManager(
+                            this@MainActivity,
+                            3,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        adapter =
+                            GifAdapter(response.body()?.data?.map { it.images?.original } as List<Gif>)
+                        hasFixedSize()
+                    }
+                }
+            })
+    }
 
     private fun addToRecyclerViewAsGridLayoutManager() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView = findViewById(R.id.recycler_view)
+        val searchName = findViewById<EditText>(R.id.search_text)
+        val searchButton = findViewById<ImageButton>(R.id.button_search)
+        val builder = AlertDialog.Builder(this)
 
-        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
-            override fun onFailure(call: Call<Data>, t: Throwable) {
-            }
-
-            override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                with(recyclerView) {
-                    layoutManager = GridLayoutManager(
-                        this@MainActivity,
-                        3,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    adapter =
-                        GifAdapter(response.body()?.data?.map { it.images?.original} as List<Gif>)
-                    hasFixedSize()
+        searchButton.setOnClickListener {
+            val searchGif = searchName.text.toString()
+            if (searchGif.isEmpty()) {
+                with(builder) {
+                    setTitle(getString(R.string.attention))
+                    setIcon(R.drawable.attention)
+                    setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
+                    setCancelable(false)
+                    create()
+                    show()
                 }
-            }
-        })
-    }
+            } else {
+                RetrofitClient.instance.getGifList(searchName = searchGif)
+                    .enqueue(object : Callback<Data> {
+                        override fun onFailure(call: Call<Data>, t: Throwable) {
+                        }
 
-    private fun addToRecyclerViewAsLinearLayoutManager() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-
-        RetrofitClient.instance.getGifList().enqueue(object : Callback<Data> {
-            override fun onFailure(call: Call<Data>, t: Throwable) {
+                        override fun onResponse(call: Call<Data>, response: Response<Data>) {
+                            with(recyclerView) {
+                                layoutManager = GridLayoutManager(
+                                    this@MainActivity,
+                                    3,
+                                    LinearLayoutManager.VERTICAL,
+                                    false
+                                )
+                                adapter =
+                                    GifAdapter(response.body()?.data?.map { it.images?.original } as List<Gif>)
+                                hasFixedSize()
+                            }
+                        }
+                    })
             }
-
-            override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                with(recyclerView) {
-                    layoutManager = LinearLayoutManager(
-                        this@MainActivity,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    GifAdapter(response.body()?.data?.map { it.images?.original} as List<Gif>)
-                    hasFixedSize()
-                }
-            }
-        })
+        }
     }
 
     @Suppress("DEPRECATION")
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) hideSystemUI()
     }
+
 }
 
 

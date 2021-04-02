@@ -3,6 +3,7 @@ package com.example.giphy.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,7 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gifImageList: ImageView = view.findViewById(R.id.gif)
-        val name: TextView = view.findViewById(R.id.gif_name)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,8 +29,7 @@ class GifAdapter(private val gifList: List<Gif>) : RecyclerView.Adapter<GifAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = gifList[position]
-        Glide.with(holder.gifImageList.context).load(item.gifUrl).into(holder.gifImageList)
-
+        Glide.with(holder.gifImageList.context).load(item.gifUrl).thumbnail(0.1f).into(holder.gifImageList)
         // holder.name.text = item.name
     }
 }
