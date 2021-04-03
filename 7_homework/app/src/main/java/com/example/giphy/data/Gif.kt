@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Gif(
     @SerializedName("url")
-    val gifUrl: String? = null
+    val gifUrl: String
 )

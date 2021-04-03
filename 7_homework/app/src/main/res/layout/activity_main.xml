@@ -4,33 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:background="@color/background_color"
     android:focusableInTouchMode="true"
     android:padding="20dp">
-
-    <ImageView
-        android:id="@+id/menu_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:src="@drawable/icon_black_vertical_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
         android:layout_marginTop="5dp"
         android:hint="@string/search_gif"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
         android:maxLength="10"
         android:background="@drawable/form_for_edit_text"
-        app:layout_constraintStart_toEndOf="@+id/menu_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:inputType="text"
         tools:ignore="Autofill" />
@@ -40,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/form_for_search_button"
+        android:background="@drawable/button_search_selector"
         android:src="@drawable/icon_search"
         app:layout_constraintStart_toEndOf="@+id/search_text"
         app:layout_constraintTop_toTopOf="parent"
