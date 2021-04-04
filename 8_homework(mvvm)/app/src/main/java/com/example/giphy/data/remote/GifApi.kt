@@ -8,8 +8,8 @@ import retrofit2.http.Query
 interface GifApi {
 
     @GET("search?api_key=J4P5R8kdKobkpJa3X6cIv2bVHkxVMmdQ&limit=25&offset=0&rating=g&lang=en")
-    suspend fun getGifList(@Query("q") searchName: String): Response<Data>
+    suspend fun getGifList(@Query("q") searchName: String): Data
 
     @GET("search?api_key=J4P5R8kdKobkpJa3X6cIv2bVHkxVMmdQ&q=mems&limit=25&offset=0&rating=g&lang=en")
-    suspend fun getMemGifList(): Response<Data>
+    suspend fun getMemGifList(): Data
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.giphy.data.repository.GifRepository
 
 class GifViewModel @ViewModelInject constructor(
-    private val repository: GifRepository
+    private val gifRepository: GifRepository
 ): ViewModel() {
 
 }
