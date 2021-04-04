@@ -1,4 +1,4 @@
-package com.example.giphy
+package com.example.giphy.utils
 
 class Constants {
     companion object {

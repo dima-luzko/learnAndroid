@@ -1,6 +1,6 @@
 package com.example.giphy.di
 
-import com.example.giphy.Constants
+import com.example.giphy.utils.Constants
 import com.example.giphy.data.remote.GifApi
 import dagger.Module
 import dagger.Provides
