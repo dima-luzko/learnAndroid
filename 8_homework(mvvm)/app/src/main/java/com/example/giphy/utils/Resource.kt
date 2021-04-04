@@ -1,6 +1,6 @@
 package com.example.giphy.utils
 
-data class Result<out T>(
+data class Resource<out T>(
     val status: Status,
     val data: T?,
     val error: Error?,
@@ -14,16 +14,16 @@ data class Result<out T>(
     }
 
     companion object {
-        fun <T> success(data: T?): Result<T> {
-            return Result(Status.SUCCESS, data, null, null)
+        fun <T> success(data: T?): Resource<T> {
+            return Resource(Status.SUCCESS, data, null, null)
         }
 
-        fun <T> error(message: String, error: Error?): Result<T> {
-            return Result(Status.ERROR, null, error, message)
+        fun <T> error(message: String, error: Error?): Resource<T> {
+            return Resource(Status.ERROR, null, error, message)
         }
 
-        fun <T> loading(data: T? = null): Result<T> {
-            return Result(Status.LOADING, data, null, null)
+        fun <T> loading(data: T? = null): Resource<T> {
+            return Resource(Status.LOADING, data, null, null)
         }
     }
 

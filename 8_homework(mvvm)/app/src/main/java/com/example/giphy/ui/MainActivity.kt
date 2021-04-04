@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.giphy.R
 import com.example.giphy.data.entities.Gif
 import com.example.giphy.retrofit.RetrofitClient
+import com.example.giphy.ui.adapter.GifAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

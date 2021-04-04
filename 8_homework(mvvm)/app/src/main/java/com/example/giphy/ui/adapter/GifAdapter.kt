@@ -1,4 +1,4 @@
-package com.example.giphy.ui
+package com.example.giphy.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
