@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Giphy</string>
+    <string name="search_gif">Search GIF…</string>
+    <string name="ok">OK</string>
+    <string name="share_gif">Share GIF</string>
+    <string name="giphy">GIPHY</string>
+    <string name="attention">Search title don\'t be empty!!</string>
+</resources>
