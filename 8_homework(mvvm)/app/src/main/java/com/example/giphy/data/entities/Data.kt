@@ -6,3 +6,5 @@ data class Data(
     @SerializedName("data")
     val data: List<GifEntity>?
 )
+
+

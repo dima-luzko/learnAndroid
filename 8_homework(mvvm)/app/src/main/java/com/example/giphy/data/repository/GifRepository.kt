@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GifRepository {
 
-    fun getMemGif (): Flow<Data>
+    suspend fun getMemGif(): Data
 
-    fun getGif(searchName: String): Flow<Data>
+    suspend fun getGif(searchName: String): Data
 }

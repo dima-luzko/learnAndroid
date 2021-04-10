@@ -1,27 +1,8 @@
 package com.example.giphy.di
 
-import com.example.giphy.utils.Constants
-import com.example.giphy.data.remote.GifApi
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
 
-    @Singleton
-    @Provides
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+val helloModule = module {
 
-    @Singleton
-    @Provides
-    fun provideGifApi(retrofit: Retrofit): GifApi = retrofit.create(GifApi::class.java)
 }
