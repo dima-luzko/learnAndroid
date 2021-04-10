@@ -3,22 +3,31 @@ package com.example.giphy.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.giphy.data.entities.Data
+import androidx.lifecycle.viewModelScope
+import com.example.giphy.data.entities.Gif
 
 import com.example.giphy.data.repository.GifRepository
+import kotlinx.coroutines.launch
 
 class GifViewModel constructor(
     private val gifRepository: GifRepository
-): ViewModel() {
+) : ViewModel() {
 
 
-    private val _gif = MutableLiveData<Data>()
-    private var gif: LiveData<Data> = _gif
+    private val _gif = MutableLiveData<List<Gif>>()
+    val gif: LiveData<List<Gif>> = _gif
 
-    private suspend fun getAllViewModelGif(gifList: Data){
-        gifRepository.getGif(gifList.data?.map { it.images?.original?.gifUrl })
-        //gifList.data?.map { it.images }
+    fun getGifList(query: String) {
+        viewModelScope.launch {
+            val data = gifRepository.getGif(query)
+            _gif.postValue(data)
+        }
     }
 
-
+    fun getMemGifList() {
+        viewModelScope.launch {
+            val data = gifRepository.getMemGif()
+            _gif.value = data
+        }
+    }
 }

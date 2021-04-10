@@ -11,23 +11,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.giphy.R
 import com.example.giphy.data.entities.Gif
-import com.example.giphy.retrofit.RetrofitClient
 import com.example.giphy.ui.adapter.GifAdapter
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModel<GifViewModel>()
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,72 @@ class MainActivity : AppCompatActivity() {
             when (checked) {
                 true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }
+
+    private fun getMemGifList() {
+        recyclerView = findViewById(R.id.recycler_view)
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main) {
+                viewModel.getMemGifList()
+                viewModel.gif.observe(this@MainActivity, Observer {
+                    with(recyclerView) {
+                        layoutManager = GridLayoutManager(
+                            this@MainActivity,
+                            3,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        adapter = GifAdapter(it) {
+                            showSharePopupDialog(it)
+                        }
+                        hasFixedSize()
+                    }
+                })
+            }
+        }
+    }
+
+    private fun addToRecyclerViewAsGridLayoutManager() {
+        recyclerView = findViewById(R.id.recycler_view)
+        val searchName = findViewById<EditText>(R.id.search_text)
+        val searchButton = findViewById<ImageButton>(R.id.button_search)
+        val builder = AlertDialog.Builder(this)
+
+        searchButton.setOnClickListener {
+            val searchGif = searchName.text.toString()
+            if (searchGif.isEmpty()) {
+                with(builder) {
+                    setTitle(getString(R.string.attention))
+                    setIcon(R.drawable.attention)
+                    setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
+                    setCancelable(false)
+                    create()
+                    show()
+                }
+            } else {
+                lifecycleScope.launch {
+                    withContext(Dispatchers.Main) {
+                        viewModel.getGifList(query = searchGif)
+                        viewModel.gif.observe(this@MainActivity, Observer {
+                            with(recyclerView) {
+                                layoutManager = GridLayoutManager(
+                                    this@MainActivity,
+                                    3,
+                                    LinearLayoutManager.VERTICAL,
+                                    false
+                                )
+                                adapter =
+                                    GifAdapter(it) {
+                                        showSharePopupDialog(it)
+                                    }
+                                hasFixedSize()
+                            }
+                        })
+                    }
+                }
             }
         }
     }
@@ -71,68 +138,6 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
-    }
-
-    private fun getMemGifList() {
-        recyclerView = findViewById(R.id.recycler_view)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = RetrofitClient.instance.getMemGifList()
-            withContext(Dispatchers.Main) {
-                with(recyclerView) {
-                    layoutManager = GridLayoutManager(
-                        this@MainActivity,
-                        3,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    adapter = GifAdapter(response.data?.map { it.images?.original } as List<Gif>) {
-                        showSharePopupDialog(it)
-                    }
-                    hasFixedSize()
-                }
-            }
-        }
-    }
-
-    private fun addToRecyclerViewAsGridLayoutManager() {
-        recyclerView = findViewById(R.id.recycler_view)
-        val searchName = findViewById<EditText>(R.id.search_text)
-        val searchButton = findViewById<ImageButton>(R.id.button_search)
-        val builder = AlertDialog.Builder(this)
-
-        searchButton.setOnClickListener {
-            val searchGif = searchName.text.toString()
-            if (searchGif.isEmpty()) {
-                with(builder) {
-                    setTitle(getString(R.string.attention))
-                    setIcon(R.drawable.attention)
-                    setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
-                    setCancelable(false)
-                    create()
-                    show()
-                }
-            } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val response = RetrofitClient.instance.getGifList(searchName = searchGif)
-                    withContext(Dispatchers.Main) {
-                        with(recyclerView) {
-                            layoutManager = GridLayoutManager(
-                                this@MainActivity,
-                                3,
-                                LinearLayoutManager.VERTICAL,
-                                false
-                            )
-                            adapter =
-                                GifAdapter(response.data?.map { it.images?.original } as List<Gif>) {
-                                    showSharePopupDialog(it)
-                                }
-                            hasFixedSize()
-                        }
-                    }
-                }
-            }
-        }
     }
 
     @Suppress("DEPRECATION")
