@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.giphy.R
 import com.example.giphy.data.entities.Gif
-import com.example.giphy.ui.adapter.GifAdapter
+import com.example.giphy.ui.gifs.GifAdapter
+import com.example.giphy.ui.gifs.GifViewModel
+import com.example.giphy.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,6 +31,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<GifViewModel>()
+    private val apiKey = Constants.API_KEY
+    private val defaultNameForMemList = Constants.DEFAULT_NAME_FOR_MEM_LIST
+    private val limit = Constants.LIMIT
+    private val language = Constants.LANG
+    private val rating = Constants.RATING
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +63,13 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             withContext(Dispatchers.Main) {
-                viewModel.getMemGifList()
+                viewModel.getMemGifList(
+                    apiKey = apiKey,
+                    defaultName = defaultNameForMemList,
+                    limit = limit,
+                    rating = rating,
+                    language = language
+                )
                 viewModel.gif.observe(this@MainActivity, Observer {
                     with(recyclerView) {
                         layoutManager = GridLayoutManager(
@@ -95,7 +108,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 lifecycleScope.launch {
                     withContext(Dispatchers.Main) {
-                        viewModel.getGifList(query = searchGif)
+                        viewModel.getGifList(
+                            apiKey = apiKey,
+                            query = searchGif,
+                            limit = limit,
+                            rating = rating,
+                            language = language
+                        )
                         viewModel.gif.observe(this@MainActivity, Observer {
                             with(recyclerView) {
                                 layoutManager = GridLayoutManager(

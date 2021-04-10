@@ -1,15 +1,26 @@
 package com.example.giphy.data.remote
 
 import com.example.giphy.data.entities.Data
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GifApi {
 
-    @GET("search?api_key=J4P5R8kdKobkpJa3X6cIv2bVHkxVMmdQ&limit=25&offset=0&rating=g&lang=en")
-    suspend fun getGifList(@Query("q") searchName: String): Data
+    @GET("search")
+    suspend fun getGifList(
+        @Query("api_key") apiKey: String,
+        @Query("q") searchName: String,
+        @Query("limit") limit: Int,
+        @Query("rating") rating: String,
+        @Query("lang") language: String
+    ): Data
 
-    @GET("search?api_key=J4P5R8kdKobkpJa3X6cIv2bVHkxVMmdQ&q=mems&limit=25&offset=0&rating=g&lang=en")
-    suspend fun getMemGifList(): Data
+    @GET("search")
+    suspend fun getMemGifList(
+        @Query("api_key") apiKey: String,
+        @Query("q") defaultName: String,
+        @Query("limit") limit: Int,
+        @Query("rating") rating: String,
+        @Query("lang") language: String
+    ): Data
 }
