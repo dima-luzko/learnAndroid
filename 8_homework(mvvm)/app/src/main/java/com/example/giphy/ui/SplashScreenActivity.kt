@@ -6,28 +6,36 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.giphy.R
+import com.example.giphy.databinding.ActivityMainBinding
+import com.example.giphy.databinding.ActivitySplashScreenBinding
 import com.example.giphy.utils.Constants
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private val gifUrl = Constants.SPLASH_SCREEN_GIF_URL
+    private val binding by lazy {
+        DataBindingUtil.setContentView<ActivitySplashScreenBinding>(
+            this,
+            R.layout.activity_splash_screen
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
         hideSystemUI()
-        addGif()
         transitionIntoMainActivity()
+        addGif()
     }
 
     private fun addGif() {
-        val icon = findViewById<ImageView>(R.id.splash_screen_image)
         Glide.with(this)
             .load(gifUrl)
             .thumbnail(0.1f)
-            .into(icon)
+            .into(binding.splashScreenImage)
     }
 
     @Suppress("DEPRECATION")

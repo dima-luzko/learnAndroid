@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.giphy.data.entities.Gif
 import com.example.giphy.data.repository.GifRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GifViewModel constructor(
     private val gifRepository: GifRepository
@@ -22,7 +24,7 @@ class GifViewModel constructor(
         rating: String,
         language: String
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val data = gifRepository.getGif(
                 apiKey = apiKey,
                 searchName = query,
@@ -41,7 +43,7 @@ class GifViewModel constructor(
         rating: String,
         language: String
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val data = gifRepository.getMemGif(
                 apiKey = apiKey,
                 defaultName = defaultName,
@@ -49,7 +51,7 @@ class GifViewModel constructor(
                 rating = rating,
                 language = language
             )
-            _gif.value = data
+            _gif.postValue(data)
         }
     }
 }
