@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun start() {
         val buttonStart = findViewById<Button>(R.id.button_start)
-        val request = PeriodicWorkRequestBuilder<PeriodicWork>(15, TimeUnit.MINUTES).build()
+        val request = PeriodicWorkRequestBuilder<PeriodicWork>(1, TimeUnit.HOURS).build()
 
         buttonStart.setOnClickListener {
             WorkManager.getInstance(applicationContext).enqueue(request)
