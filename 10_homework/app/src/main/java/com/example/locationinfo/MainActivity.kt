@@ -235,5 +235,6 @@ class MainActivity : AppCompatActivity(),PermissionListener {
         intent.data = uri
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+
     }
 }
