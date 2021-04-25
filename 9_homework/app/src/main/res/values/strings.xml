@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Phone Info</string>
+    <string name="battery_title">Current battery charge</string>
+    <string name="memory_title">Current state of memory</string>
+    <string name="battery_description">Battery is %s%s</string>
+    <string name="memory_description">Free: %s%s out of %s%s</string>
+    <string name="percent">%</string>
+    <string name="megabyte">MB</string>
+</resources>
