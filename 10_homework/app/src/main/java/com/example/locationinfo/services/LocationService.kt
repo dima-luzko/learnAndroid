@@ -25,22 +25,16 @@ import com.google.android.gms.location.LocationServices
 
 class LocationService : Service() {
 
-    private var lat: Double = 0.0
-
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
     override fun onCreate() {
         super.onCreate()
-        //createNotification(getString(R.string.location_title), "fffff: ${getLocation()}")
         getLocation()
-
     }
 
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
         super.onStartCommand(intent, flags, startId)
         return START_STICKY
     }
@@ -50,15 +44,20 @@ class LocationService : Service() {
             super.onLocationResult(locationResult)
             val latitude: Double = locationResult.lastLocation.latitude
             val longitude: Double = locationResult.lastLocation.longitude
-            lat = latitude
-            Log.d("LOCATION_UPDATE", "Latitude = $lat, Longitude = $longitude")
-            Toast.makeText(applicationContext, "Latitude = $lat, Longitude = $longitude", Toast.LENGTH_LONG).show()
-            createNotification(getString(R.string.location_title),getString(R.string.location_description,latitude.toString(),longitude.toString()))
+            Log.d("LOCATION_UPDATE", "Latitude = $latitude, Longitude = $longitude")
+            Toast.makeText(
+                applicationContext,
+                "Latitude = $latitude, Longitude = $longitude",
+                Toast.LENGTH_LONG
+            ).show()
+            createNotification(
+                getString(R.string.location_title),
+                getString(R.string.location_description, latitude.toString(), longitude.toString())
+            )
         }
     }
 
-     fun getLocation() {
-
+    private fun getLocation() {
         val locationRequest = LocationRequest.create().apply {
             interval = Constants.LOCATION_INTERVAL.toLong()
             fastestInterval = Constants.LOCATION_FASTER_INTERVAL.toLong()
@@ -73,18 +72,10 @@ class LocationService : Service() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         LocationServices.getFusedLocationProviderClient(this)
             .requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-
         //startForeground(Constants.LOCATION_SERVICE_ID, notificationBuilder.build())
     }
 
