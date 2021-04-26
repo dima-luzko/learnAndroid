@@ -8,8 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Location
-import android.location.LocationManager
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
@@ -17,25 +15,17 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import com.example.locationinfo.MainActivity
 import com.example.locationinfo.R
 import com.example.locationinfo.utils.Constants
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.karumi.dexter.listener.single.PermissionListener
 
 
 class LocationService : Service() {
 
-//    private val locationListeners = arrayOf(
-//        LocationListener(LocationManager.GPS_PROVIDER),
-//        LocationListener(LocationManager.NETWORK_PROVIDER)
-//    )
-
     private var lat: Double = 0.0
-
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -63,7 +53,7 @@ class LocationService : Service() {
             lat = latitude
             Log.d("LOCATION_UPDATE", "Latitude = $lat, Longitude = $longitude")
             Toast.makeText(applicationContext, "Latitude = $lat, Longitude = $longitude", Toast.LENGTH_LONG).show()
-            createNotification(getString(R.string.location_title),"$lat")
+            createNotification(getString(R.string.location_title),getString(R.string.location_description,latitude.toString(),longitude.toString()))
         }
     }
 
