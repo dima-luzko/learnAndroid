@@ -76,7 +76,6 @@ class LocationService : Service() {
         }
         LocationServices.getFusedLocationProviderClient(this)
             .requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-        //startForeground(Constants.LOCATION_SERVICE_ID, notificationBuilder.build())
     }
 
     private fun createNotification(title: String, description: String) {
