@@ -57,12 +57,11 @@
                 android:layout_height="110dp"
                 android:layout_marginBottom="16dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/tesla_car"
+                android:src="@drawable/porsche_930_car"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
 
