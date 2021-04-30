@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Car Showroom</string>
+    <string name="tesla">tesla</string>
+    <string name="audi">audi</string>
+    <string name="bmw">bmw</string>
+    <string name="cherry">cherry</string>
+    <string name="nissan">nissan</string>
+    <string name="porsche">porsche</string>
 </resources>

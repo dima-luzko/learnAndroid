@@ -8,7 +8,7 @@
 
         <OnSwipe
             motion:dragDirection="dragUp"
-            motion:touchAnchorId="@id/recyclerview"
+            motion:touchAnchorId="@id/car_recyclerview"
             motion:touchAnchorSide="top" />
 
     </Transition>
