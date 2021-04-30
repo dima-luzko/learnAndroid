@@ -1,9 +1,12 @@
 package com.example.carshowroom
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carshowroom.adapter.CarAdapter
+import com.example.carshowroom.data.Car
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +23,7 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = CarAdapter(carsList()) {
-
-            }
+            adapter = CarAdapter(carsList())
             hasFixedSize()
         }
     }
